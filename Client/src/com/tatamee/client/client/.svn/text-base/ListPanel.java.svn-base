@@ -1,0 +1,117 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+public class ListPanel extends Composite {
+	private static VerticalPanel mainPanel = new VerticalPanel();
+
+	private static VerticalPanel searchResults = new VerticalPanel();
+
+	private static Label title = new Label();
+
+	public ListPanel(String location) {
+		mainPanel.setStyleName("ListPanel");
+		mainPanel.setHorizontalAlignment(VerticalPanel.ALIGN_CENTER);
+		mainPanel.add(title);
+		mainPanel.setCellHeight(title, "20px");
+		searchResults.setStyleName("ListPanel-results");
+		searchResults.setSpacing(3);
+		searchResults.add(new HTML("No items found in " + location
+				+ ".<a href=\"#\"> Be the first to list an item</a>"));
+		setBuy(location);
+		mainPanel.add(searchResults);
+		initWidget(mainPanel);
+	}
+
+	public static void setLabel(String label) {
+		title.setText(label + ":");
+	}
+
+	public static void setSell() {
+		searchResults.clear();
+		searchResults.add(new HTML("<a href=\"#\">Add new item</a>"));
+	}
+
+	public static void setBuy(String location) {
+		searchResults.clear();
+
+		// TODO: Load First item on List
+		String description = "Selling eames chair from Pantone era. Nice looking for a lounge. Will Negotiate";
+		Item eamesdummy = new Item(new String[] { "Eames Chair", "Sofa", "Lounge" },
+				description, new String[] { "images/eames.jpg" }, 1000.00, 3,
+				"crudomingo");
+		eamesdummy.addAttribute("Era", "Retro");
+		eamesdummy.addAttribute("Type", "Chair");
+		eamesdummy.addAttribute("Furniture", "Yes");
+		ItemPanel.loadItem(eamesdummy);
+
+		// GET RESULTS FROM LABEL IF NO RESULTS:
+		// searchResults.add(new HTML("No items found in " + location + ".<a
+		// href=\"#\"> Be the first to list an item</a>"));
+
+		HTML cellphone = new HTML(
+				"Cellphone, Internet-Enabled: Yes, Free Software, Great...");
+		cellphone.addClickListener(new ClickListener() {
+			public void onClick(Widget sender) {
+				String description = "Selling nice cellphone with Sprint-Nextel Contract, will negotiate, some cracks on the cover. ";
+				Item cellphone = new Item(new String[] { "Cellphone",
+						"Celular", "Cell" }, description,
+						new String[] { "images/nextel.jpg" }, 300.00, 5,
+						"mauzepeda");
+				cellphone.addAttribute("Brand", "Motorola");
+				cellphone.addAttribute("Internet-enabled", "Yes");
+				cellphone.addAttribute("Network", "3g");
+				cellphone.addAttribute("Walkie-Talkie", "Yes");
+				cellphone.addAttribute("OS", "Windows Mobile");
+				cellphone.addAttribute("Service Provider", "Nextel");
+				cellphone.addAttribute("Unlocked", "No");
+				cellphone.addAttribute("Guarantee", "2yrs");
+				cellphone.addAttribute("Negotiable", "Yes");
+				cellphone.addAttribute("Sucks", "Yes");
+				cellphone.addAttribute("Why?", "Microsoft");
+				ItemPanel.loadItem(cellphone);
+			}
+		});
+
+		HTML eames = new HTML("Eames Chair");
+		eames.addClickListener(new ClickListener() {
+			public void onClick(Widget sender) {
+				String description = "Selling eames chair from Pantone era. Nice looking for a lounge. Will Negotiate";
+				Item cellphone = new Item(new String[] { "Eames Chair", "Sofa",
+						"Lounge" }, description,
+						new String[] { "images/eames.jpg" }, 1000.00, 3,
+						"crudomingo");
+				cellphone.addAttribute("Era", "Retro");
+				cellphone.addAttribute("Type", "Chair");
+				cellphone.addAttribute("Furniture", "Yes");
+				ItemPanel.loadItem(cellphone);
+			}
+		});
+
+		HTML massage = new HTML("Massage");
+		massage.addClickListener(new ClickListener() {
+			public void onClick(Widget sender) {
+				String description = "Will give nice massage, relax after a stressing day. Will give good price depending on massage time<br/><br/><br/>OVERFLOW";
+				Item cellphone = new Item(new String[] { "Massage" },
+						description, new String[] { "images/massage.jpg" },
+						50.00, 29, "etuleu");
+				cellphone.addAttribute("Relaxing", "Yes");
+				cellphone.addAttribute("Happy Ending", "No");
+				ItemPanel.loadItem(cellphone);
+			}
+		});
+
+		searchResults.add(cellphone);
+		searchResults.add(eames);
+		searchResults.add(massage);
+	}
+}

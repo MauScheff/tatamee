@@ -1,0 +1,38 @@
+application: tatam
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /admin/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
+  login: admin
+
+- url: /
+  script: tatamee.py
+  
+- url: /images
+  static_dir: images
+  
+- url: /buy
+  script: client.py
+
+- url: /sell
+  script: client.py
+  login: required
+  
+- url: /getuser
+  script: updateuser.py
+  login: required
+  
+- url: /updateuser
+  script: updateuser.py
+  login: required
+
+- url: /post
+  script: post.py
+  login: required
+  
+- url: /com.tatamee.client.Client
+  static_dir: com.tatamee.client.Client

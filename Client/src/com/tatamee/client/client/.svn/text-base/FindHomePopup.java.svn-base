@@ -1,0 +1,188 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.json.client.JSONArray;
+import com.google.gwt.json.client.JSONParser;
+import com.google.gwt.json.client.JSONString;
+import com.google.gwt.json.client.JSONValue;
+import com.google.gwt.maps.client.MapType;
+import com.google.gwt.maps.client.MapWidget;
+import com.google.gwt.maps.client.control.SmallZoomControl;
+import com.google.gwt.maps.client.event.MapDragHandler;
+import com.google.gwt.maps.client.event.MapZoomEndHandler;
+import com.google.gwt.maps.client.geocode.Geocoder;
+import com.google.gwt.maps.client.geocode.LatLngCallback;
+import com.google.gwt.maps.client.geom.LatLng;
+import com.google.gwt.maps.client.overlay.Marker;
+import com.google.gwt.maps.client.overlay.MarkerOptions;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.KeyboardListenerAdapter;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+public class FindHomePopup extends Composite {
+
+	private static VerticalPanel enterLocation = new VerticalPanel();
+
+	private static MapWidget homeMap = new MapWidget();
+
+	private static Marker marker;
+
+	public FindHomePopup() {
+		MarkerOptions options = new MarkerOptions();
+    	options.setDraggable(true);
+		marker = new Marker(homeMap.getCenter(), options);
+		RequestBuilder userCheck = new RequestBuilder(RequestBuilder.GET,
+				"/getuser");
+		userCheck.setRequestData(new JSONString(ClientApplication.user
+				+ "@gmail.com").toString());
+		userCheck.setCallback(new RequestCallback() {
+			public void onError(Request request, Throwable exception) {
+				PopUpPanel
+						.set(
+								"Error:",
+								new Label(
+										"Please check your network connection, or try again..."));
+				PopUpPanel.addCloseButton();
+				PopUpPanel.show();
+			}
+
+			public void onResponseReceived(Request request, Response response) {
+				/*
+				 * Returns a boolean if user is not found, otherwise returns the
+				 * user data
+				 */
+				JSONValue jsonResponse = JSONParser.parse(response.getText());
+				if (jsonResponse.isBoolean() != null) {
+					enterLocation.setSpacing(7);
+					enterLocation
+							.add(new Label(
+									"Please find your home location."));
+
+					// TODO: Add HOME ICON
+					/*
+					 * Add Map
+					 */
+					homeMap.addControl(new SmallZoomControl());
+					homeMap.setSize("360px", "360px");
+					homeMap.setCenter(new LatLng(40, 0), 1);
+					centerMarker();
+					homeMap.addMapDragHandler(new MapDragHandler() {
+						public void onDrag(MapDragEvent event) {
+							centerMarker();
+						}
+					});
+					homeMap.addMapZoomEndHandler(new MapZoomEndHandler() {
+						public void onZoomEnd(MapZoomEndEvent event) {
+							if (homeMap.getZoomLevel() <= 3) {
+								homeMap.setCurrentMapType(MapType
+										.getHybridMap());
+							} else {
+								homeMap.setCurrentMapType(MapType
+										.getNormalMap());
+							}
+						}
+					});
+					enterLocation.add(homeMap);
+
+					enterLocation.add(new Label("Go to:"));
+					final TextBox goTo = new TextBox();
+					goTo.addKeyboardListener(new KeyboardListenerAdapter() {
+						public void onKeyUp(Widget sender, char keyCode,
+								int modifiers) {
+							if (keyCode == KeyboardListenerAdapter.KEY_ENTER) {
+								Geocoder localizer = new Geocoder();
+								localizer.getLatLng(goTo.getText(),
+										new LatLngCallback() {
+											public void onFailure() {
+												goTo
+														.setText("Location Not Found!");
+											}
+
+											public void onSuccess(LatLng point) {
+												homeMap.setCenter(point);
+												homeMap.setZoomLevel(11);
+											}
+										});
+							}
+						}
+					});
+					enterLocation.add(goTo);
+
+					Button submit = new Button("Submit");
+					submit.addClickListener(new ClickListener() {
+						public void onClick(Widget sender) {
+							/*
+							 * TODO: Request to /updateuser (Post) Send location
+							 * and store it
+							 */
+							String requestData = "?user="
+									+ ClientApplication.user;
+							RequestBuilder updateUser = new RequestBuilder(
+									RequestBuilder.POST, "/updateuser"
+											+ requestData);
+
+							try {
+								updateUser.sendRequest(null,
+										new RequestCallback() {
+											public void onError(
+													Request request,
+													Throwable exception) {
+												PopUpPanel
+														.showErrorPanel(exception
+																.getMessage());
+											}
+
+											public void onResponseReceived(
+													Request request,
+													Response response) {
+												PopUpPanel
+														.showMessage("User location has been added successfuly");
+											}
+										});
+								PopUpPanel.hide();
+							} catch (RequestException e) {
+								PopUpPanel.showErrorPanel(e.getMessage());
+							}
+						}
+					});
+
+					enterLocation.add(submit);
+					PopUpPanel.set("Welcome " + ClientApplication.user + ":",
+							enterLocation);
+					PopUpPanel.show();
+				} else {
+					JSONArray userAttributes = jsonResponse.isArray();
+					PopUpPanel.set("You exist in the database", new Label(
+							userAttributes.toString()));
+					PopUpPanel.addCloseButton();
+					PopUpPanel.show();
+				}
+			}
+		});
+		try {
+			userCheck.send();
+		} catch (RequestException e) {
+			PopUpPanel.set("Error:", new Label(e.getMessage()));
+			PopUpPanel.addCloseButton();
+			PopUpPanel.show();
+		}
+		initWidget(enterLocation);
+	}
+
+	private void centerMarker() {
+		marker.setPoint(homeMap.getCenter());
+	}
+}

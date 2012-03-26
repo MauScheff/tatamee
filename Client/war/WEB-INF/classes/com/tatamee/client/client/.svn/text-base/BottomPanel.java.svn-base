@@ -1,0 +1,25 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Composite;
+
+/*
+ * Top Panel (Logo, locate, list, login, logout, etc..)
+ */
+public class BottomPanel extends Composite {
+	private static final HorizontalPanel mainPanel = new HorizontalPanel();
+	
+	public BottomPanel() {
+		mainPanel.setStyleName("BottomPanel");
+		HTML copyr = new HTML("&copy;2008 Tatamee");
+		copyr.setStyleName("BottomPanel-copyright");
+		mainPanel.add(copyr);
+		mainPanel.setCellHorizontalAlignment(copyr, HorizontalPanel.ALIGN_CENTER);
+		initWidget(mainPanel);
+	}
+}

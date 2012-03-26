@@ -1,0 +1,174 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.Command;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FocusListener;
+import com.google.gwt.user.client.ui.KeyboardListenerAdapter;
+import com.google.gwt.user.client.ui.MenuBar;
+import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.RichTextArea;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.RichTextArea.BasicFormatter;
+
+public class DescriptionEditor extends Composite {
+	
+	private static VerticalPanel mainPanel = new VerticalPanel();
+	private static RichTextArea description = new RichTextArea();
+	final BasicFormatter formatter = description.getBasicFormatter();
+	
+	public DescriptionEditor() {
+		if (formatter != null) {
+			MenuBar tools = new MenuBar();
+//			tools.setAutoOpen(true);
+
+			/*
+			 * Style Menu
+			 */
+			MenuBar style = new MenuBar(true);
+			style.setAnimationEnabled(true);
+			style.addItem("<b>Bold</b>", true, new Command() {
+				public void execute() {
+					formatter.toggleBold();
+				}
+			});
+			style.addSeparator();
+			style.addItem("<u>Underline</u>", true, new Command() {
+				public void execute() {
+					formatter.toggleUnderline();
+				}
+			});
+			tools.addItem(new MenuItem("Style", style));
+
+			tools.addSeparator();
+
+			/*
+			 * Colors Menu
+			 */
+			MenuBar colors = new MenuBar(true);
+			colors.setAnimationEnabled(true);
+			colors.addItem("None", new Command() {
+				public void execute() {
+					formatter.setForeColor("black");
+				}
+			});
+			colors.addSeparator();
+			colors.addItem("<div style=\"color: blue\">Blue</div>", true,
+					new Command() {
+						public void execute() {
+							formatter.setForeColor("blue");
+						}
+					});
+			colors.addSeparator();
+			colors.addItem("<div style=\"color: red\">Red</div>", true,
+					new Command() {
+						public void execute() {
+							formatter.setForeColor("red");
+						}
+					});
+			colors.addSeparator();
+			colors.addItem("<div style=\"color: green\">Green</div>", true,
+					new Command() {
+						public void execute() {
+							formatter.setForeColor("green");
+						}
+					});
+			colors.addSeparator();
+			colors.addItem("<div style=\"color: yellow\">Yellow</div>",
+					true, new Command() {
+						public void execute() {
+							formatter.setForeColor("yellow");
+						}
+					});
+			colors.addSeparator();
+			colors.addItem("<div style=\"color: gray\">Gray</div>", true,
+					new Command() {
+						public void execute() {
+							formatter.setForeColor("gray");
+						}
+					});
+			colors.addSeparator();
+			colors.addItem("<div style=\"color: pink\">Pink</div>", true,
+					new Command() {
+						public void execute() {
+							formatter.setForeColor("pink");
+						}
+					});
+			tools.addItem(new MenuItem("Color", true, colors));
+			tools.addSeparator();
+
+			/*
+			 * Size Menu
+			 */
+			MenuBar sizes = new MenuBar(true);
+			sizes.setAnimationEnabled(true);
+			sizes.addSeparator();
+			sizes.addItem("<div style=\"size: x-small\">Small</div>", true,
+					new Command() {
+						public void execute() {
+							formatter
+									.setFontSize(RichTextArea.FontSize.X_SMALL);
+						}
+					});
+			sizes.addSeparator();
+			sizes.addItem("<div style=\"size: normal\">Normal</div>", true,
+					new Command() {
+						public void execute() {
+							formatter
+									.setFontSize(RichTextArea.FontSize.MEDIUM);
+						}
+					});
+			sizes.addSeparator();
+			sizes.addItem("<div style=\"size: x-large\">Large</div>", true,
+					new Command() {
+						public void execute() {
+							formatter
+									.setFontSize(RichTextArea.FontSize.X_LARGE);
+						}
+					});
+			tools.addItem(new MenuItem("Size", true, sizes));
+			tools.addSeparator();
+			mainPanel.add(tools);
+		}
+
+		description.addKeyboardListener(new KeyboardListenerAdapter() {
+			public void onKeyUp(Widget sender, char keyCode, int modifiers) {
+				ItemPanel.setDescription(description.getText());
+			}
+		});
+		description.addFocusListener(new FocusListener() {
+			public void onFocus(Widget sender) {
+				if (description.getText().equals("Description")) {
+					description.setHTML("<br>");
+					ItemPanel.setDescription("");
+				}
+			}
+
+			public void onLostFocus(Widget sender) {
+				/*
+				 * TODO: change condition to description.isEmpty()
+				 * (implement recursive may work checking for < and >)
+				 */
+				if (description.getHTML().startsWith("<br>")) {
+					description.setText("Description");
+					ItemPanel.setDescription("Description");
+				}
+			}
+		});
+		mainPanel.add(description);
+		description.setText("Description");
+		initWidget(mainPanel);
+	}
+
+	public String getText() {
+		return description.getText();
+	}
+
+	public String getHTML() {
+		return description.getHTML();
+	}
+}

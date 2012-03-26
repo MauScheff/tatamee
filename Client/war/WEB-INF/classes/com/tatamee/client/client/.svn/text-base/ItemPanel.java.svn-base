@@ -1,0 +1,139 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
+
+public class ItemPanel extends Composite{
+	private static VerticalPanel mainPanel = new VerticalPanel();
+	private static String root;
+	private static Label title = new Label();
+	private static Image thumbnail = new Image();
+	private static Label price = new Label();
+	private static HTML features1 = new HTML();
+	private static HTML features2 = new HTML();
+	private static HTML description = new HTML();
+	private static HTML daysAgo = new HTML();
+	private static HTML goodRatings = new HTML();
+	private static HTML badRatings = new HTML();
+	
+	public ItemPanel(String root) {
+		ItemPanel.root = root;
+		mainPanel.addStyleName("ItemPanel");
+		HorizontalPanel itemTitle = new HorizontalPanel();
+		HorizontalPanel itemAttributes = new HorizontalPanel();
+
+		// TITLE
+		itemTitle.setStyleName("ItemPanel-titlebar");
+		title.setStyleName("ItemPanel-title");
+		price.setStyleName("ItemPanel-price");
+		
+		goodRatings.setStyleName("ItemPanel-goodratings");
+		goodRatings.setTitle("Satisfied Clients");
+		badRatings.setStyleName("ItemPanel-badratings");
+		badRatings.setTitle("Reported Items / Unsatisfied Clients");
+
+		goodRatings.setHorizontalAlignment(HorizontalPanel.ALIGN_RIGHT);
+		badRatings.setHorizontalAlignment(HorizontalPanel.ALIGN_RIGHT);
+		itemTitle.add(title);
+		itemTitle.add(price);
+		itemTitle.add(goodRatings);
+		itemTitle.add(badRatings);
+
+		// ATTRIBUTES
+		itemAttributes.setHeight("100%");
+		thumbnail.setPixelSize(100, 100);
+
+		// Description
+		description.setStyleName("ItemPanel-description");
+
+		// Features
+		HorizontalPanel glass1 = new HorizontalPanel();
+		glass1.setStyleName("ItemPanel-glass");
+		HorizontalPanel glass2 = new HorizontalPanel();
+		glass2.setStyleName("ItemPanel-glass");
+		
+		HorizontalPanel features1Panel = new HorizontalPanel();
+		features1Panel.add(glass1);
+		features1Panel.setStyleName("ItemPanel-featuresPanel");
+		features1Panel.add(features1);
+		
+		HorizontalPanel features2Panel = new HorizontalPanel();
+		features2Panel.add(glass2);
+		features2Panel.setStyleName("ItemPanel-featuresPanel");
+		features2Panel.add(features2);
+		
+		features1.addStyleName("ItemPanel-features");
+		features2.addStyleName("ItemPanel-features");
+
+		itemAttributes.add(thumbnail);
+		itemAttributes.add(description);
+		itemAttributes.add(features1Panel);
+		itemAttributes.add(features2Panel);
+
+		
+		daysAgo.setStyleName("ItemPanel-daysAgo");
+		
+		mainPanel.add(itemTitle);
+		mainPanel.add(itemAttributes);
+		mainPanel.add(daysAgo);
+		mainPanel.setCellHorizontalAlignment(daysAgo, HorizontalPanel.ALIGN_RIGHT);
+//		mainPanel.setCellVerticalAlignment(daysAgo, HorizontalPanel.ALIGN_MIDDLE);
+		clearPanel();
+		initWidget(mainPanel);
+	}
+	
+	public static void clearPanel(){
+		title.setText(SellPanel.getEditorTitle());
+		setPrice(SellPanel.getEditorPrice());
+		thumbnail.setUrl(ItemPanel.root + "images/x.jpg");
+		description.setHTML(SellPanel.getDescriptionText());
+		features1.setHTML("Features");
+		features2.setHTML("More Features" + "<br><a href=\"javascript:;\">More...</a><br><a href=\"javascript:;\">Report Item</a><br><a href=\"javascript:;\">Contact Seller</a><br>");
+		daysAgo.setHTML("");
+		goodRatings.setHTML("");
+		badRatings.setHTML("");
+	}
+	
+	public static void loadItem(Item item){
+		title.setText(item.getName(0));
+		price.setText("$" + Double.toString(item.getPrice()));
+		thumbnail.setUrl(ItemPanel.root + item.getPicture(0));
+		description.setHTML(item.getDescription());
+		features1.setWordWrap(false);
+		features2.setWordWrap(false);
+		features1.setHTML(item.getAttributes(0, 6));
+		features2.setHTML(item.getAttributes(6, 9) + "<a href=\"javascript:;\">More...</a><br><a href=\"javascript:;\">Report Item</a><br><a href=\"javascript:;\">Contact Seller</a><br>");
+		daysAgo.setHTML("From " + item.getOwner() + ", " + item.getDaysSinceAdded() + " days ago...");
+		goodRatings.setHTML(item.getGoodRatings());
+		badRatings.setHTML(item.getBadRatings());
+	}
+	
+	public static void setDescription(String string){
+		description.setText(string);
+	}
+	
+	public static void setItemTitle(String string){
+		title.setText(string);
+	}
+	
+	public static void setPrice(String string){
+			price.setText("$ " + addCommas(string) + ".00");
+	}
+	
+	private static String addCommas(String string){
+		if(string.length() <= 3)
+			return string;
+		else
+			return addCommas(string.substring(0,string.length()-3)) + "," + string.substring(string.length()-3);
+			
+	}
+
+}

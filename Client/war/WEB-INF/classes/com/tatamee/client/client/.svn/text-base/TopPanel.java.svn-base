@@ -1,0 +1,67 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Composite;
+
+/*
+ * TODO: Internationalize
+ * TODO: Add different sizes for different resolutions
+ * TODO: Change the way in which user reports and succeses look
+ * TODO: When click on username in item panel load that users items and location
+ */
+
+/*
+ * Top Panel (Logo, locate, list, login, logout, etc..)
+ */
+public class TopPanel extends Composite{
+	private static final HorizontalPanel mainPanel = new HorizontalPanel();
+	private static HTML mode = new HTML("");
+	private static HTML options = new HTML("");
+	
+	public TopPanel(String root, String user, String links, ClickListener listener) {
+		mode.addClickListener(listener);
+		mainPanel.addStyleName("TopPanel");
+		Image logo = new Image(root + "images/TATAMEEBETA200.png");
+		logo.setStyleName("Toplogo");
+		mainPanel.setVerticalAlignment(HorizontalPanel.ALIGN_MIDDLE);
+		mainPanel.add(logo);
+		VerticalPanel accountPanel = new VerticalPanel();
+		HTML greeting = new HTML("Hello " + user);
+		greeting.setStyleName("TopPanel-greeting");
+		accountPanel.add(greeting);
+		HTML linksHTML = new HTML(links);
+		HorizontalPanel linksPanel = new HorizontalPanel();
+		linksPanel.setSpacing(3);
+		mode.setStyleName("TopPanel-links");
+		options.setStyleName("TopPanel-links");
+		linksPanel.add(mode);
+		linksPanel.add(options);
+		linksPanel.add(linksHTML);
+		accountPanel.add(linksPanel);
+		accountPanel.setCellHorizontalAlignment(linksPanel, VerticalPanel.ALIGN_RIGHT);
+		mainPanel.add(accountPanel);
+		mainPanel.setCellHorizontalAlignment(accountPanel, HorizontalPanel.ALIGN_RIGHT);
+		initWidget(mainPanel);
+	}
+	
+	public static void setSell(boolean sell, String user){
+		if (user.equals("anonymous")){
+			mode.setHTML("");
+			options.setHTML("");
+		} else if(sell){
+			mode.setHTML("Sell");
+			options.setHTML("Options");
+		} else {
+			mode.setHTML("Buy");
+			options.setHTML("Options");
+		}
+	}
+}

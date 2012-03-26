@@ -1,0 +1,142 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.maps.client.MapWidget;
+import com.google.gwt.maps.client.control.SmallZoomControl;
+import com.google.gwt.maps.client.geocode.Geocoder;
+import com.google.gwt.maps.client.geocode.LatLngCallback;
+import com.google.gwt.maps.client.geom.LatLng;
+import com.google.gwt.maps.client.geom.LatLngBounds;
+import com.google.gwt.maps.client.overlay.Marker;
+import com.google.gwt.maps.client.overlay.MarkerOptions;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.KeyboardListenerAdapter;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+public class MapPanel extends Composite{
+	private static MapWidget map = new MapWidget();
+	private static VerticalPanel locationPopup = new VerticalPanel();
+	private static HTML[] locations = new HTML[5];
+	private static TextBox locationTextBox = null;
+	private static HTML otherLocation = new HTML("Other");
+	
+	private static ClickListener listener = new ClickListener(){
+		public void onClick(Widget sender) {
+			for (int i = 0; i < locations.length; i++) {
+				if (sender == locations[i]) {
+					// STORE LOCATION FOR IP
+					SearchPanel.setLocationTextBox(locations[i].getHTML());
+					ListPanel.setLabel("Search results in " + locations[i].getHTML());
+					PopUpPanel.hide();
+					setLocation(locations[i].getHTML());
+				}
+			}
+			if (sender == otherLocation && locationTextBox == null) {
+				locationTextBox = new TextBox();
+				locationTextBox.setFocus(true);
+				locationTextBox.addKeyboardListener(new KeyboardListenerAdapter() {
+					public void onKeyDown(Widget sender, char keyCode, int modifiers) {
+						if(keyCode == KeyboardListenerAdapter.KEY_ENTER){
+							// STORE LOCATION FOR IP
+							SearchPanel.setLocationTextBox(locationTextBox.getText());
+							ListPanel.setLabel("Search Results in " + locationTextBox.getText());
+							PopUpPanel.hide();
+							setLocation(locationTextBox.getText());
+						}
+					}
+				});
+				locationPopup.add(locationTextBox);
+			} else if (sender == otherLocation){
+				if(locationTextBox.isVisible())
+					locationTextBox.setVisible(false);
+				else
+					locationTextBox.setVisible(true);
+			}
+		}
+	};
+
+	public MapPanel(String currentLocation) {
+		map.addControl(new SmallZoomControl());
+		map.setSize("360px", "360px");
+		map.setCenter(new LatLng(40, 0), 1);
+		initWidget(map);
+	}
+
+	public static void askLocation(String user) {
+		locationPopup.setSpacing(7);
+		locations = new HTML[5];
+
+		/*
+		 * for(int i=0;i<locations.length;i++){ locations[i] = new
+		 * HTML("location" + i); locations[i].addClickListener(this);
+		 * if(!locations[i].equals("")) locationPopup.add(locations[i]);//CLICK
+		 * LISTENER }
+		 */
+
+		locations[0] = new HTML("Mexico City, Mexico");
+		locations[1] = new HTML("Constanca, Romania");
+		locations[2] = new HTML("Cuernavaca, Mexico");
+		locations[3] = new HTML("Quito, Ecuador");
+		
+		locations[0].addStyleName("popup-location");
+		locations[1].addStyleName("popup-location");
+		locations[2].addStyleName("popup-location");
+		locations[3].addStyleName("popup-location");
+
+		locations[0].addClickListener(listener);
+		locations[1].addClickListener(listener);
+		locations[2].addClickListener(listener);
+		locations[3].addClickListener(listener);
+		otherLocation.addClickListener(listener);
+
+		locationPopup.add(new HTML("Please select your current location:"));
+		locationPopup.add(locations[0]);
+		locationPopup.add(locations[1]);
+		locationPopup.add(locations[2]);
+		locationPopup.add(locations[3]);
+		locationPopup.add(new HTML(""));
+		locationPopup.add(otherLocation);
+
+		PopUpPanel.set("Welcome " + user, locationPopup);
+		PopUpPanel.show();
+		
+	}
+
+	public static void setLocation(String location) {
+		Geocoder localizer = new Geocoder();
+		localizer.getLatLng(location, new LatLngCallback() {
+			public void onFailure() {
+				PopUpPanel.setText("Error: Location not found!");
+				PopUpPanel.show();
+			}
+
+			public void onSuccess(LatLng point) {
+				map.setVisible(true);
+				map.setCenter(point);
+				map.setZoomLevel(11);
+
+				// Marker TESTS
+				LatLngBounds bounds = map.getBounds();
+			    LatLng southWest = bounds.getSouthWest();
+			    LatLng northEast = bounds.getNorthEast();
+			    double lngSpan = northEast.getLongitude() - southWest.getLongitude();
+			    double latSpan = northEast.getLatitude() - southWest.getLatitude();
+			    for (int i = 0; i < 10; i++) {
+			    	MarkerOptions options = new MarkerOptions();
+			    	options.setDraggable(true);
+			      LatLng point2 = new LatLng(southWest.getLatitude() + latSpan
+			          * Math.random(), southWest.getLongitude() + lngSpan * Math.random());
+			      Marker marker = new Marker(point2, options);
+			      map.addOverlay(marker);
+			    }
+			}
+		});
+	}
+}

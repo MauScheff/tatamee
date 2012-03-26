@@ -1,0 +1,75 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.DialogBox;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.widgetideas.client.GlassPanel;
+
+public class PopUpPanel {
+	private static DialogBox popup = new DialogBox(false);
+	private static GlassPanel glassPanel = new GlassPanel(true);
+	private static Button close = new Button("Close");
+	
+	public PopUpPanel(){
+		popup.setAnimationEnabled(true);
+		popup.addStyleName("dialogue");
+		close.addClickListener(new ClickListener(){
+			public void onClick(Widget sender) {
+				hide();
+			}
+		});
+	}
+	
+	public static void show(){
+		Window.enableScrolling(false);
+		RootPanel.get().add(glassPanel, 0, 0);
+		popup.addStyleName("bold");
+		popup.show();
+		popup.center();
+	}
+	
+	public static void hide(){
+		popup.hide();
+		glassPanel.removeFromParent();
+		Window.enableScrolling(true);
+	}
+	
+	public static void set(String title, Widget content){
+		setText(title);
+		setWidget(content);
+	}
+	
+	public static void setText(String string){
+		popup.setText(string);
+	}
+	
+	public static void setWidget(Widget w){
+		popup.setWidget(w);
+	}
+	
+	public static void addCloseButton(){
+		popup.add(close);
+	}
+	
+	public static void showErrorPanel(String error){
+		setText("Error:");
+		popup.add(new Label(error));
+		addCloseButton();
+		show();
+	}
+	
+	public static void showMessage(String message){
+		setText("Message:");
+		popup.add(new Label(message));
+		addCloseButton();
+		show();
+	}
+}

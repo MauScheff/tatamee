@@ -1,0 +1,102 @@
+application: tatam
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+
+- url: /admin/.*
+  script: $PYTHON_LIB/google/appengine/ext/admin
+  login: admin
+
+- url: /
+  script: client.py
+  
+- url: /images
+  static_dir: images
+
+- url: /captcha
+  script: captcha.py  
+  
+- url: /static
+  static_dir: static
+    
+- url: /image
+  script: image.py
+
+- url: /stylesheets
+  static_dir: stylesheets
+  
+- url: /home
+  script: client.py
+  login: required
+  
+- url: /getuser
+  script: updateuser.py
+  login: required
+  
+- url: /updateuser
+  script: updateuser.py
+  login: required
+  
+- url: /updatecurrency
+  script: updateuser.py
+  login: required
+
+- url: /updatelocale
+  script: updateuser.py
+  login: required   
+
+- url: /post
+  script: post.py
+  login: required
+  
+- url: /mail
+  script: mail.py
+  
+- url: /ratings
+  script: ratings.py
+  
+- url: /ratings/post
+  script: ratings.py
+  
+- url: /ratings/report
+  script: ratings.py     
+
+- url: /delete/delete_expired_items
+  script: delete_expired_items.py
+  login: admin
+  
+- url: /delete/delete_expired_ghostratings
+  script: delete_expired_ghostratings.py
+  login: admin   
+  
+- url: /delete
+  script: delete.py
+  login: required
+  
+- url: /getitems
+  script: getitems.py
+  
+- url: /suggestions
+  script: suggestions.py  
+  
+- url: /com.tatamee.client.Client
+  static_dir: com.tatamee.client.Client
+  
+- url: /com.tatamee.client.Ratings
+  static_dir: com.tatamee.client.Ratings
+  
+- url: /userresource
+  static_dir: userresource  
+  
+- url: /user/.*
+  script: user.py
+  
+- url: /favicon.ico
+  static_files: images/favicon.ico
+  upload: images/favicon.ico
+
+- url: /robots.txt
+  static_files: static/robots.txt
+  upload: static/robots.txt

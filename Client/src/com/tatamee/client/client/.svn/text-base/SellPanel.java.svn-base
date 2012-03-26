@@ -1,0 +1,349 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ChangeListener;
+import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FileUpload;
+import com.google.gwt.user.client.ui.FocusListener;
+import com.google.gwt.user.client.ui.FormHandler;
+import com.google.gwt.user.client.ui.FormPanel;
+import com.google.gwt.user.client.ui.FormSubmitCompleteEvent;
+import com.google.gwt.user.client.ui.FormSubmitEvent;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Hyperlink;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.KeyboardListenerAdapter;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+public class SellPanel extends Composite {
+
+	private static final HorizontalPanel mainPanel = new HorizontalPanel();
+	private static TextBox title1 = new TextBox();
+	private static TextBox title2 = new TextBox();
+	private static TextBox title3 = new TextBox();
+	private static TextBox price = new TextBox();
+	private static Image thumbnail = new Image();
+	private static TextBox descriptionHTML = new TextBox();
+	private static DescriptionEditor description = new DescriptionEditor();
+
+	public SellPanel(String root) {
+		
+		VerticalPanel panel1 = new VerticalPanel();
+		panel1.setSpacing(10);
+		VerticalPanel panel2 = new VerticalPanel();
+		VerticalPanel invisiblePanel = new VerticalPanel();
+		
+		/*
+		 * Form Handler
+		 */
+		final FormPanel form = new FormPanel();
+		form.setAction("/post");
+		form.setEncoding(FormPanel.ENCODING_MULTIPART);
+		form.setMethod(FormPanel.METHOD_POST);
+		form.addFormHandler(new FormHandler() {
+			public void onSubmit(FormSubmitEvent event) {
+				descriptionHTML.setText(description.getHTML());
+				Window.alert("Submitting... ");
+				
+				// this opportunity to perform validation.
+				// event.setCancelled(true);
+				// POPUP ON Error
+			}
+
+			public void onSubmitComplete(FormSubmitCompleteEvent event) {
+				// RELOAD MY ItEMS, edit current item
+				// show current item url and embed url
+				Window.alert("done: " + event.getResults());
+			}
+		});
+
+	/*
+	 * Panel 1 (Left Side)
+	 */
+		thumbnail.setPixelSize(100, 100);
+		thumbnail.setUrl(root + "images/x.jpg");
+		title1.setText("What is it?");
+		title1.setWidth("150px");
+		title1.addKeyboardListener(new KeyboardListenerAdapter() {
+			public void onKeyUp(Widget sender, char keyCode, int modifiers) {
+				ItemPanel.setItemTitle(title1.getText());
+			}
+		});
+		title1.addFocusListener(new FocusListener() {
+			public void onFocus(Widget sender) {
+				if (title1.getText().equals("What is it?")) {
+					title1.setText("");
+					ItemPanel.setItemTitle("");
+				}
+			}
+
+			public void onLostFocus(Widget sender) {
+				if (title1.getText().equals("")) {
+					title1.setText("What is it?");
+					ItemPanel.setItemTitle("What is it?");
+				}
+			}
+		});
+
+		title2.setText("What else is it?"); // TODO: ADD Hyperlink
+		// to hide the two
+		// optional boxes and
+		// when clicked show
+		// them
+		title2.setWidth("150px");
+		title2.addFocusListener(new FocusListener() {
+			public void onFocus(Widget sender) {
+				if (title2.getText().equals("What else is it?"))
+					title2.setText("");
+			}
+
+			public void onLostFocus(Widget sender) {
+				if (title2.getText().equals(""))
+					title2.setText("What else is it?");
+			}
+		});
+
+		title3.setText("Another Synonym?");
+		title3.setWidth("150px");
+		title3.addFocusListener(new FocusListener() {
+			public void onFocus(Widget sender) {
+				if (title3.getText().equals("Another Synonym?"))
+					title3.setText("");
+			}
+
+			public void onLostFocus(Widget sender) {
+				if (title3.getText().equals(""))
+					title3.setText("Another Synonym?");
+			}
+		});
+
+		/*
+		 * Main Panel Assembly (Left Side)
+		 */
+		HorizontalPanel imagePanel = new HorizontalPanel();
+		VerticalPanel itemTitle = new VerticalPanel();
+		itemTitle.setStyleName("SellPanel-ItemTitles");
+		itemTitle.setHeight("100px");
+		itemTitle.setVerticalAlignment(VerticalPanel.ALIGN_MIDDLE);
+		imagePanel.add(thumbnail);
+		itemTitle.add(title1);
+		itemTitle.add(title2);
+		itemTitle.add(title3);
+		imagePanel.add(itemTitle);
+		panel1.add(imagePanel);
+		panel1.add(description);
+
+	/*
+	 * Panel 2 (Right Side)
+	 */
+		/*
+		 * Image Loader
+		 */
+		panel2.add(new Label("Picture(s):"));
+		FileUpload imageSelect = new FileUpload();
+		panel2.setSpacing(10);
+		HorizontalPanel imageLoadPanel = new HorizontalPanel();
+		panel2.add(imageSelect);
+
+		// Image Load Panel
+		imageLoadPanel.setWidth("245px");
+		imageLoadPanel.add(new Button("Load", new ClickListener() {
+			public void onClick(Widget sender) {
+				form.submit();
+			}
+		}));
+		Hyperlink addMoreImages = new Hyperlink("Add more Pictures (Optional)",
+				"history2");
+		imageLoadPanel.add(addMoreImages);
+		imageLoadPanel.setCellHorizontalAlignment(addMoreImages,
+				HorizontalPanel.ALIGN_CENTER);
+		imageLoadPanel.setCellVerticalAlignment(addMoreImages,
+				HorizontalPanel.ALIGN_MIDDLE);
+		panel2.add(imageLoadPanel);
+		
+		/*
+		 * Price
+		 */
+//		panel2.add(new Label("Price:"));
+		HorizontalPanel pricePanel = new HorizontalPanel();
+		pricePanel.setSize("245px", "25px");
+		price.setText("0");
+		price.setWidth("135px");
+		price.addKeyboardListener(new KeyboardListenerAdapter() {
+			public void onKeyPress(Widget sender, char keyCode, int modifiers){
+				if (keyCode == '.' || (!Character.isDigit(keyCode)) && (keyCode != (char) KEY_TAB)
+			            && (keyCode != (char) KEY_BACKSPACE)
+			            && (keyCode != (char) KEY_DELETE) && (keyCode != (char) KEY_ENTER) 
+			            && (keyCode != (char) KEY_HOME) && (keyCode != (char) KEY_END)
+			            && (keyCode != (char) KEY_LEFT) && (keyCode != (char) KEY_UP)
+			            && (keyCode != (char) KEY_RIGHT) && (keyCode != (char) KEY_DOWN)) {
+			          ((TextBox)sender).cancelKey();
+				}
+			}
+			
+			public void onKeyUp(Widget sender, char keyCode, int modifiers) {
+				ItemPanel.setPrice(price.getText());
+			}
+		});
+		price.addFocusListener(new FocusListener() {
+			public void onFocus(Widget sender) {
+				if (price.getText().equals("0")) {
+					price.setText("");
+					ItemPanel.setPrice("");
+				}
+			}
+
+			public void onLostFocus(Widget sender) {
+				if (price.getText().equals("")) {
+					price.setText("0");
+					ItemPanel.setPrice("0");
+				}
+			}
+		});
+		// TODO: add custom currency symbols like euro, yen, pound, etc.
+		Label currency = new Label("$");
+		currency.setStyleName("SellPanel-Currency");
+		pricePanel.add(currency);
+		pricePanel.add(price);
+		currency.setWidth("95px");
+		pricePanel.setCellHorizontalAlignment(currency,
+				HorizontalPanel.ALIGN_CENTER);
+		pricePanel.setCellVerticalAlignment(currency,
+				HorizontalPanel.ALIGN_MIDDLE);
+		pricePanel.setCellHorizontalAlignment(price,
+				HorizontalPanel.ALIGN_RIGHT);
+		panel2.add(pricePanel);
+		
+		/*
+		 * Attributes
+		 */
+		HorizontalPanel attributesTitle = new HorizontalPanel();
+		attributesTitle.setWidth("245px");
+		attributesTitle.add(new Label("Attributes: "));
+		Hyperlink seeAttributes = new Hyperlink("See All", "history3");
+		attributesTitle.add(seeAttributes);
+		attributesTitle.setCellHorizontalAlignment(seeAttributes, HorizontalPanel.ALIGN_RIGHT);
+		HorizontalPanel attributeWriter = new HorizontalPanel();
+		attributeWriter.setWidth("245px");
+		TextBox attribute = new TextBox();
+		attribute.setWidth("105px");
+		attributeWriter.add(attribute);
+		attributeWriter.add(new Label(":"));
+		TextBox value = new TextBox();
+		value.setWidth("105px");
+		attributeWriter.add(value);
+		panel2.add(attributesTitle);
+		panel2.add(attributeWriter);
+		
+		/*
+		 * Status
+		 */
+		HorizontalPanel statusPanel = new HorizontalPanel();
+		statusPanel.setSize("245px", "50px");
+		statusPanel.setStyleName("SellPanel-StatusPanel");
+		Label status = new Label("Status");
+		status.setStyleName("SellPanel-StatusLabel");
+		statusPanel.add(status);
+		statusPanel.setCellHorizontalAlignment(status, HorizontalPanel.ALIGN_CENTER);
+		statusPanel.setCellVerticalAlignment(status, HorizontalPanel.ALIGN_MIDDLE);
+		panel2.add(statusPanel);
+		
+		/*
+		 * Contact Form
+		 */
+		panel2.add(new Label("Preferred Contact Method:"));
+		HorizontalPanel contactPanel = new HorizontalPanel();
+		ListBox contactSelect = new ListBox();
+		contactSelect.addItem("Email", "email");
+		contactSelect.addItem("Phone", "phone");
+		contactSelect.addItem("URL", "url");
+		contactPanel.add(contactSelect);
+		TextBox contactString = new TextBox();
+		contactString.setText(ClientApplication.user + "@gmail.com");
+		contactString.setReadOnly(true);
+		contactPanel.add(contactString);
+		panel2.add(contactPanel);
+		
+		TextBox contact = new TextBox();
+		contact.setVisible(false);
+		contact.setName("contact");
+		invisiblePanel.add(contact);
+		contactSelect.addChangeListener(new ChangeListener(){
+			public void onChange(Widget sender) {
+				Window.alert(sender.toString());
+			}
+		});
+		
+		/*
+		 * Submit Button and Anonymous Checkbox
+		 */
+		HorizontalPanel submitPanel = new HorizontalPanel();
+		submitPanel.setWidth("245px");
+		HorizontalPanel anonymousPanel = new HorizontalPanel();
+		CheckBox anonymous = new CheckBox();
+		anonymousPanel.add(anonymous);
+		anonymousPanel.add(new Label("Hide my username"));
+		Button submit = new Button("Submit", new ClickListener() {
+			public void onClick(Widget sender) {
+				form.submit();
+			}
+		});
+		submitPanel.add(anonymousPanel);
+		submitPanel.add(submit);
+		submitPanel.setCellHorizontalAlignment(submit, HorizontalPanel.ALIGN_RIGHT);
+		submitPanel.setCellVerticalAlignment(anonymousPanel, HorizontalPanel.ALIGN_MIDDLE);
+		panel2.add(submitPanel);
+		
+	/*
+	 * Attributes submitted to server
+	 */
+		title1.setName("what");
+		title2.setName("what2");
+		title3.setName("what3");
+		
+		descriptionHTML.setName("description");
+		invisiblePanel.add(descriptionHTML);
+		
+		imageSelect.setName("img");
+		price.setName("price");
+//		Attributes
+//		Contact
+//		anonymous
+
+	/*
+	 * Panel Assembly
+	 */
+		mainPanel.add(panel1);
+		mainPanel.add(panel2);
+		mainPanel.add(invisiblePanel);
+		form.add(mainPanel);
+		initWidget(form);
+	}
+
+	public static String getEditorTitle() {
+		return title1.getText();
+	}
+
+	public static String getDescriptionText() {
+		return description.getText();
+	}
+
+	public static String getDescriptionHTML() {
+		return description.getHTML();
+	}
+	
+	public static String getEditorPrice(){
+		return price.getText();
+	}
+}

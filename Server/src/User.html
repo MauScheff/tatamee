@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tatamee</title>
+    
+    <!-- JavaScript variables from django templating engine -->
+    <script type="text/javascript" language="javascript">
+    var user_id = "{{ user_id }}"
+    var nickname = "{{ nickname }}"
+    </script>
+    
+    <meta name="gwt:property" content="locale={{ locale }}">
+    
+    <script type="text/javascript" language="javascript" src="/userresource/userresource.nocache.js"></script>
+  </head>
+
+  <body>
+    <!-- OPTIONAL: include this if you want history support -->
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+    
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"> </script>
+    <script>  
+    CFInstall.check();
+    </script>
+  </body>
+</html>
+

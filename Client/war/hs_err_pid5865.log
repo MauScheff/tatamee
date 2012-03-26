@@ -1,0 +1,872 @@
+#
+# An unexpected error has been detected by Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0xcefbc719, pid=5865, tid=4158253968
+#
+# Java VM: Java HotSpot(TM) Server VM (11.3-b02 mixed mode linux-x86)
+# Problematic frame:
+# C  [libmozjs.so+0x73719]  js_CompareStrings+0x39
+#
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x09d33000):  JavaThread "main" [_thread_in_native, id=5866, stack(0xf7d4e000,0xf7d9f000)]
+
+siginfo:si_signo=SIGSEGV: si_errno=0, si_code=1 (SEGV_MAPERR), si_addr=0x00000000
+
+Registers:
+EAX=0x00000000, EBX=0xcefca2bc, ECX=0xcec48198, EDX=0x00000004
+ESP=0xf7d9b028, EBP=0xf7d9b050, ESI=0xcec48198, EDI=0x00000000
+EIP=0xcefbc719, CR2=0x00000000, EFLAGS=0x00010246
+
+Top of Stack: (sp=0xf7d9b028)
+0xf7d9b028:   f7d9b038 ce951b91 bf7e5b08 00000018
+0xf7d9b038:   f7d9b0a8 ce838e2f 00000004 cefca2bc
+0xf7d9b048:   bf9ae458 bf9ae430 f7d9b2d0 cef8adba
+0xf7d9b058:   cec48198 00000000 00000003 cf500010
+0xf7d9b068:   000000b8 cf500010 f7f24ff4 cf7f8be8
+0xf7d9b078:   000000b8 000000b8 f7d9b0a0 cf7dacb9
+0xf7d9b088:   000000b8 cf500010 f7d9b0c0 cf7f8be8
+0xf7d9b098:   cf7c52fc ceb19664 ceac55c8 bf7e5b08 
+
+Instructions: (pc=0xcefbc719)
+0xcefbc709:   0f 88 18 01 00 00 89 d0 25 ff 7f 00 00 89 45 f0
+0xcefbc719:   8b 0f f7 c1 00 00 00 40 89 4d ec 74 12 85 c9 0f 
+
+Stack: [0xf7d4e000,0xf7d9f000],  sp=0xf7d9b028,  free space=308k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libmozjs.so+0x73719]  js_CompareStrings+0x39
+C  [libmozjs.so+0x41dba]  js_Interpret+0x665a
+C  [libmozjs.so+0x3a8c7]  js_Invoke+0x7e7
+C  [libmozjs.so+0x3abc3]  js_InternalInvoke+0xb3
+C  [libmozjs.so+0x15f9b]  JS_CallFunctionValue+0x4b
+C  [libgwt-ll.so+0x5029]  Java_com_google_gwt_dev_shell_moz_LowLevelMoz__1invoke+0x233
+J  com.google.gwt.dev.shell.moz.LowLevelMoz._invoke(ILjava/lang/String;I[II)Z
+j  com.google.gwt.dev.shell.moz.LowLevelMoz.invoke(ILjava/lang/String;I[II)V+6
+j  com.google.gwt.dev.shell.moz.ModuleSpaceMoz.doInvoke(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Lcom/google/gwt/dev/shell/JsValue;+145
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J  com.google.gwt.dev.shell.moz.LowLevelMoz._invoke(ILjava/lang/String;I[II)Z
+j  com.google.gwt.dev.shell.moz.LowLevelMoz.invoke(ILjava/lang/String;I[II)V+6
+j  com.google.gwt.dev.shell.moz.ModuleSpaceMoz.doInvoke(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)Lcom/google/gwt/dev/shell/JsValue;+145
+J  com.google.gwt.dev.shell.ModuleSpace.invokeNativeInt(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)I
+j  com.google.gwt.dev.shell.JavaScriptHost.invokeNativeInt(Ljava/lang/String;Ljava/lang/Object;[Ljava/lang/Class;[Ljava/lang/Object;)I+7
+j  com.google.gwt.user.client.impl.DOMImpl.eventGetTypeInt(Ljava/lang/String;)I+20
+j  com.google.gwt.user.client.impl.DOMImpl.eventGetTypeInt(Lcom/google/gwt/user/client/Event;)I+5
+j  com.google.gwt.user.client.DOM.eventGetType(Lcom/google/gwt/user/client/Event;)I+4
+j  com.google.gwt.user.client.ui.Widget.onBrowserEvent(Lcom/google/gwt/user/client/Event;)V+1
+v  ~StubRoutines::call_stub
+j  sun.reflect.NativeMethodAccessorImpl.invoke0(Ljava/lang/reflect/Method;Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+0
+j  sun.reflect.NativeMethodAccessorImpl.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;+87
+J  java.lang.reflect.Method.invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+J  com.google.gwt.dev.shell.moz.MethodDispatch.invoke(I[II)V
+v  ~StubRoutines::call_stub
+J  org.eclipse.swt.internal.gtk.OS._gtk_main_do_event(I)V
+J  org.eclipse.swt.widgets.Display.eventProc(II)I
+v  ~StubRoutines::call_stub
+J  org.eclipse.swt.internal.gtk.OS._g_main_context_iteration(IZ)Z
+J  org.eclipse.swt.widgets.Display.readAndDispatch()Z
+J  com.google.gwt.dev.HostedModeBase.pumpEventLoop()V
+j  com.google.gwt.dev.HostedModeBase.run()V+19
+j  com.google.gwt.dev.HostedMode.main([Ljava/lang/String;)V+27
+v  ~StubRoutines::call_stub
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0xc960f400 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=5897, stack(0xcf077000,0xcf0c8000)]
+  0x09e5c400 JavaThread "Timer-0" daemon [_thread_blocked, id=5882, stack(0xcf026000,0xcf077000)]
+  0x09dee400 JavaThread "Low Memory Detector" daemon [_thread_blocked, id=5879, stack(0xd040e000,0xd045f000)]
+  0x09dec800 JavaThread "CompilerThread1" daemon [_thread_blocked, id=5878, stack(0xd045f000,0xd04e0000)]
+  0x09de8400 JavaThread "CompilerThread0" daemon [_thread_blocked, id=5877, stack(0xd04e0000,0xd0561000)]
+  0x09de6800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=5876, stack(0xd0561000,0xd05b2000)]
+  0x09dbc400 JavaThread "Finalizer" daemon [_thread_blocked, id=5875, stack(0xd05f1000,0xd0642000)]
+  0x09db7c00 JavaThread "Reference Handler" daemon [_thread_blocked, id=5874, stack(0xd0642000,0xd0693000)]
+=>0x09d33000 JavaThread "main" [_thread_in_native, id=5866, stack(0xf7d4e000,0xf7d9f000)]
+
+Other Threads:
+  0x09db4400 VMThread [stack: 0xd0693000,0xd0714000] [id=5873]
+  0x09df0400 WatcherThread [stack: 0xd038d000,0xd040e000] [id=5880]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 35456K, used 19813K [0xf1320000, 0xf3bf0000, 0xf4c00000)
+  eden space 29632K, 53% used [0xf1320000,0xf22a2780,0xf3010000)
+  from space 5824K, 67% used [0xf3010000,0xf33e6dd8,0xf35c0000)
+  to   space 5632K, 0% used [0xf3670000,0xf3670000,0xf3bf0000)
+ PSOldGen        total 76288K, used 56492K [0xd4c00000, 0xd9680000, 0xf1320000)
+  object space 76288K, 74% used [0xd4c00000,0xd832b208,0xd9680000)
+ PSPermGen       total 54144K, used 54083K [0xd0c00000, 0xd40e0000, 0xd4c00000)
+  object space 54144K, 99% used [0xd0c00000,0xd40d0df8,0xd40e0000)
+
+Dynamic libraries:
+06000000-06676000 r-xp 00000000 08:08 312362                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/server/libjvm.so
+06676000-066bb000 rwxp 00675000 08:08 312362                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/server/libjvm.so
+066bb000-06add000 rwxp 066bb000 00:00 0 
+08048000-08052000 r-xp 00000000 08:08 25234                              /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/bin/java
+08052000-08053000 rwxp 00009000 08:08 25234                              /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/bin/java
+09d2d000-0b8c0000 rwxp 09d2d000 00:00 0                                  [heap]
+beb00000-bed00000 rwxp beb00000 00:00 0 
+bed00000-bef00000 rwxp bed00000 00:00 0 
+bef00000-beff6000 rwxp bef00000 00:00 0 
+beff6000-bf000000 ---p beff6000 00:00 0 
+bf000000-bf0f1000 rwxp bf000000 00:00 0 
+bf0f1000-bf100000 ---p bf0f1000 00:00 0 
+bf100000-bf279000 rwxp bf100000 00:00 0 
+bf279000-bf300000 ---p bf279000 00:00 0 
+bf300000-bf400000 rwxp bf300000 00:00 0 
+bf400000-bf4fc000 rwxp bf400000 00:00 0 
+bf4fc000-bf500000 ---p bf4fc000 00:00 0 
+bf500000-bf700000 rwxp bf500000 00:00 0 
+bf700000-bf8e5000 rwxp bf700000 00:00 0 
+bf8e5000-bf900000 ---p bf8e5000 00:00 0 
+bf900000-bf9e2000 rwxp bf900000 00:00 0 
+bf9e2000-bfa00000 ---p bf9e2000 00:00 0 
+bfa00000-bfb00000 rwxp bfa00000 00:00 0 
+bfb00000-bfd00000 rwxp bfb00000 00:00 0 
+bfd00000-bfddf000 rwxp bfd00000 00:00 0 
+bfddf000-bfe00000 ---p bfddf000 00:00 0 
+bfe00000-bff00000 rwxp bfe00000 00:00 0 
+bff00000-c0000000 rwxp bff00000 00:00 0 
+c0100000-c01e4000 rwxp c0100000 00:00 0 
+c01e4000-c0200000 ---p c01e4000 00:00 0 
+c02fe000-c02ff000 ---p c02fe000 00:00 0 
+c02ff000-c0aff000 rwxp c02ff000 00:00 0 
+c0aff000-c0b00000 ---p c0aff000 00:00 0 
+c0b00000-c1300000 rwxp c0b00000 00:00 0 
+c1300000-c13b7000 rwxp c1300000 00:00 0 
+c13b7000-c1400000 ---p c13b7000 00:00 0 
+c1400000-c1600000 rwxp c1400000 00:00 0 
+c1600000-c17ff000 rwxp c1600000 00:00 0 
+c17ff000-c1800000 ---p c17ff000 00:00 0 
+c1800000-c18c3000 rwxp c1800000 00:00 0 
+c18c3000-c1900000 ---p c18c3000 00:00 0 
+c1900000-c19fa000 rwxp c1900000 00:00 0 
+c19fa000-c1a00000 ---p c19fa000 00:00 0 
+c1a00000-c1c00000 rwxp c1a00000 00:00 0 
+c1c00000-c1cfe000 rwxp c1c00000 00:00 0 
+c1cfe000-c1d00000 ---p c1cfe000 00:00 0 
+c1e00000-c1f00000 rwxp c1e00000 00:00 0 
+c2000000-c2200000 rwxp c2000000 00:00 0 
+c2200000-c22fd000 rwxp c2200000 00:00 0 
+c22fd000-c2300000 ---p c22fd000 00:00 0 
+c2300000-c23eb000 rwxp c2300000 00:00 0 
+c23eb000-c2400000 ---p c23eb000 00:00 0 
+c2400000-c2600000 rwxp c2400000 00:00 0 
+c2600000-c26f6000 rwxp c2600000 00:00 0 
+c26f6000-c2700000 ---p c26f6000 00:00 0 
+c2700000-c2800000 rwxp c2700000 00:00 0 
+c2800000-c29b5000 rwxp c2800000 00:00 0 
+c29b5000-c2a00000 ---p c29b5000 00:00 0 
+c2a00000-c2afe000 rwxp c2a00000 00:00 0 
+c2afe000-c2b00000 ---p c2afe000 00:00 0 
+c2b00000-c2c00000 rwxp c2b00000 00:00 0 
+c2c00000-c2cff000 rwxp c2c00000 00:00 0 
+c2cff000-c2d00000 ---p c2cff000 00:00 0 
+c2e00000-c3000000 rwxp c2e00000 00:00 0 
+c3000000-c3200000 rwxp c3000000 00:00 0 
+c3200000-c32f9000 rwxp c3200000 00:00 0 
+c32f9000-c3300000 ---p c32f9000 00:00 0 
+c3300000-c3400000 rwxp c3300000 00:00 0 
+c3400000-c34ff000 rwxp c3400000 00:00 0 
+c34ff000-c3500000 ---p c34ff000 00:00 0 
+c3500000-c35f2000 rwxp c3500000 00:00 0 
+c35f2000-c3600000 ---p c35f2000 00:00 0 
+c3600000-c36da000 rwxp c3600000 00:00 0 
+c36da000-c3700000 ---p c36da000 00:00 0 
+c3700000-c37fe000 rwxp c3700000 00:00 0 
+c37fe000-c3800000 ---p c37fe000 00:00 0 
+c3800000-c38ff000 rwxp c3800000 00:00 0 
+c38ff000-c3900000 ---p c38ff000 00:00 0 
+c3900000-c3a00000 rwxp c3900000 00:00 0 
+c3a00000-c3afb000 rwxp c3a00000 00:00 0 
+c3afb000-c3b00000 ---p c3afb000 00:00 0 
+c3b00000-c3bc0000 rwxp c3b00000 00:00 0 
+c3bc0000-c3c00000 ---p c3bc0000 00:00 0 
+c3c00000-c3cfb000 rwxp c3c00000 00:00 0 
+c3cfb000-c3d00000 ---p c3cfb000 00:00 0 
+c3d00000-c3e00000 rwxp c3d00000 00:00 0 
+c3e00000-c3efd000 rwxp c3e00000 00:00 0 
+c3efd000-c3f00000 ---p c3efd000 00:00 0 
+c3f00000-c3fee000 rwxp c3f00000 00:00 0 
+c3fee000-c4000000 ---p c3fee000 00:00 0 
+c4000000-c41fd000 rwxp c4000000 00:00 0 
+c41fd000-c4200000 ---p c41fd000 00:00 0 
+c4200000-c4400000 rwxp c4200000 00:00 0 
+c4400000-c4600000 rwxp c4400000 00:00 0 
+c4600000-c46fb000 rwxp c4600000 00:00 0 
+c46fb000-c4700000 ---p c46fb000 00:00 0 
+c4800000-c4a00000 rwxp c4800000 00:00 0 
+c4a00000-c4bf3000 rwxp c4a00000 00:00 0 
+c4bf3000-c4c00000 ---p c4bf3000 00:00 0 
+c4c00000-c4dda000 rwxp c4c00000 00:00 0 
+c4dda000-c4e00000 ---p c4dda000 00:00 0 
+c4e00000-c4ee9000 rwxp c4e00000 00:00 0 
+c4ee9000-c4f00000 ---p c4ee9000 00:00 0 
+c4f00000-c5000000 rwxp c4f00000 00:00 0 
+c5000000-c50fc000 rwxp c5000000 00:00 0 
+c50fc000-c5100000 ---p c50fc000 00:00 0 
+c51fd000-c51fe000 ---p c51fd000 00:00 0 
+c51fe000-c59fe000 rwxp c51fe000 00:00 0 
+c5a00000-c5be4000 rwxp c5a00000 00:00 0 
+c5be4000-c5c00000 ---p c5be4000 00:00 0 
+c5c00000-c5e00000 rwxp c5c00000 00:00 0 
+c5e00000-c5edf000 rwxp c5e00000 00:00 0 
+c5edf000-c5f00000 ---p c5edf000 00:00 0 
+c5fff000-c6000000 ---p c5fff000 00:00 0 
+c6000000-c6800000 rwxp c6000000 00:00 0 
+c6800000-c68ff000 rwxp c6800000 00:00 0 
+c68ff000-c6900000 ---p c68ff000 00:00 0 
+c6900000-c69ff000 rwxp c6900000 00:00 0 
+c69ff000-c6a00000 ---p c69ff000 00:00 0 
+c6a00000-c6afd000 rwxp c6a00000 00:00 0 
+c6afd000-c6b00000 ---p c6afd000 00:00 0 
+c6c00000-c6d00000 rwxp c6c00000 00:00 0 
+c6df1000-c6e37000 r-xp 00000000 08:08 313166                             /usr/lib32/nss/libnssckbi.so
+c6e37000-c6e3f000 r-xp 00045000 08:08 313166                             /usr/lib32/nss/libnssckbi.so
+c6e3f000-c6e43000 rwxp 0004d000 08:08 313166                             /usr/lib32/nss/libnssckbi.so
+c6e43000-c6e87000 r-xp 00000000 08:08 313163                             /usr/lib32/nss/libfreebl3.so
+c6e87000-c6e88000 r-xp 00043000 08:08 313163                             /usr/lib32/nss/libfreebl3.so
+c6e88000-c6e89000 rwxp 00044000 08:08 313163                             /usr/lib32/nss/libfreebl3.so
+c6e89000-c6f06000 r-xp 00000000 08:08 5702371                            /usr/lib32/libsqlite3.so.0.8.6
+c6f06000-c6f07000 r-xp 0007d000 08:08 5702371                            /usr/lib32/libsqlite3.so.0.8.6
+c6f07000-c6f08000 rwxp 0007e000 08:08 5702371                            /usr/lib32/libsqlite3.so.0.8.6
+c6f08000-c6f5b000 r-xp 00000000 08:08 3859926                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libpipnss.so
+c6f5b000-c6f5e000 rwxp 00053000 08:08 3859926                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libpipnss.so
+c6f5e000-c6fcb000 r-xp 00000000 08:08 3860107                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libsoftokn3.so
+c6fcb000-c6fcf000 rwxp 0006d000 08:08 3860107                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libsoftokn3.so
+c6fcf000-c70f6000 r-xp 00000000 08:08 5702314                            /usr/lib32/libnss3.so
+c70f6000-c70f7000 ---p 00127000 08:08 5702314                            /usr/lib32/libnss3.so
+c70f7000-c70fb000 r-xp 00127000 08:08 5702314                            /usr/lib32/libnss3.so
+c70fb000-c70fd000 rwxp 0012b000 08:08 5702314                            /usr/lib32/libnss3.so
+c7200000-c7400000 rwxp c7200000 00:00 0 
+c7400000-c74eb000 rwxp c7400000 00:00 0 
+c74eb000-c7500000 ---p c74eb000 00:00 0 
+c7500000-c7600000 rwxp c7500000 00:00 0 
+c7600000-c7700000 rwxp c7600000 00:00 0 
+c77ff000-c7a00000 rwxp c77ff000 00:00 0 
+c7a00000-c7bfe000 rwxp c7a00000 00:00 0 
+c7bfe000-c7c00000 ---p c7bfe000 00:00 0 
+c7c00000-c7cf6000 rwxp c7c00000 00:00 0 
+c7cf6000-c7d00000 ---p c7cf6000 00:00 0 
+c7d00000-c7e00000 rwxp c7d00000 00:00 0 
+c7e00000-c7eff000 rwxp c7e00000 00:00 0 
+c7eff000-c7f00000 ---p c7eff000 00:00 0 
+c8000000-c81f1000 rwxp c8000000 00:00 0 
+c81f1000-c8200000 ---p c81f1000 00:00 0 
+c8200000-c82fe000 rwxp c8200000 00:00 0 
+c82fe000-c8300000 ---p c82fe000 00:00 0 
+c8300000-c83fb000 rwxp c8300000 00:00 0 
+c83fb000-c8400000 ---p c83fb000 00:00 0 
+c8400000-c84f9000 rwxp c8400000 00:00 0 
+c84f9000-c8500000 ---p c84f9000 00:00 0 
+c8500000-c8700000 rwxp c8500000 00:00 0 
+c8700000-c8800000 rwxp c8700000 00:00 0 
+c8900000-c8a00000 rwxp c8900000 00:00 0 
+c8a1a000-c8a4e000 r-xp 00000000 08:08 313164                             /usr/lib32/nss/libsoftokn3.so
+c8a4e000-c8a4f000 r-xp 00034000 08:08 313164                             /usr/lib32/nss/libsoftokn3.so
+c8a4f000-c8a50000 rwxp 00035000 08:08 313164                             /usr/lib32/nss/libsoftokn3.so
+c8a50000-c8a72000 r-xp 00000000 08:08 3860105                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libsmime3.so
+c8a72000-c8a74000 rwxp 00022000 08:08 3860105                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libsmime3.so
+c8a74000-c8b00000 r-xp 00000000 08:08 90342                              /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans-Bold.ttf
+c8b00000-c8c00000 rwxp c8b00000 00:00 0 
+c8d00000-c8e00000 rwxp c8d00000 00:00 0 
+c8e28000-c8e3a000 r-xp 00000000 08:08 3859945                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libxmlextras.so
+c8e3a000-c8e3b000 rwxp 00012000 08:08 3859945                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libxmlextras.so
+c8e3b000-c9100000 rwxp c8e3b000 00:00 0 
+c9100000-c91e0000 rwxp c9100000 00:00 0 
+c91e0000-c9200000 ---p c91e0000 00:00 0 
+c9200000-c92fe000 rwxp c9200000 00:00 0 
+c92fe000-c9300000 ---p c92fe000 00:00 0 
+c9300000-c93fe000 rwxp c9300000 00:00 0 
+c93fe000-c9400000 ---p c93fe000 00:00 0 
+c9400000-c94fc000 rwxp c9400000 00:00 0 
+c94fc000-c9500000 ---p c94fc000 00:00 0 
+c9500000-c95e5000 rwxp c9500000 00:00 0 
+c95e5000-c9600000 ---p c95e5000 00:00 0 
+c9600000-c96d9000 rwxp c9600000 00:00 0 
+c96d9000-c9700000 ---p c96d9000 00:00 0 
+c9700000-c97fe000 rwxp c9700000 00:00 0 
+c97fe000-c9800000 ---p c97fe000 00:00 0 
+c9800000-c98f7000 rwxp c9800000 00:00 0 
+c98f7000-c9900000 ---p c98f7000 00:00 0 
+c9900000-c99f3000 rwxp c9900000 00:00 0 
+c99f3000-c9a00000 ---p c99f3000 00:00 0 
+c9a03000-c9a21000 r-xp 00000000 08:08 3859940                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libwallet.so
+c9a21000-c9a22000 rwxp 0001e000 08:08 3859940                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libwallet.so
+c9a22000-c9a68000 r-xp 00000000 08:08 2434152                            /usr/share/fonts/truetype/msttcorefonts/Arial_Bold.ttf
+c9a68000-c9b00000 r-xp 00000000 08:08 90320                              /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf
+c9b00000-c9be8000 rwxp c9b00000 00:00 0 
+c9be8000-c9c00000 ---p c9be8000 00:00 0 
+c9c06000-c9c28000 r-xp 00000000 08:08 313165                             /usr/lib32/nss/libnssdbm3.so
+c9c28000-c9c29000 r-xp 00022000 08:08 313165                             /usr/lib32/nss/libnssdbm3.so
+c9c29000-c9c2a000 rwxp 00023000 08:08 313165                             /usr/lib32/nss/libnssdbm3.so
+c9c2a000-c9c3e000 r-xp 00000000 08:08 5702312                            /usr/lib32/libnssutil3.so
+c9c3e000-c9c41000 r-xp 00013000 08:08 5702312                            /usr/lib32/libnssutil3.so
+c9c41000-c9c42000 rwxp 00016000 08:08 5702312                            /usr/lib32/libnssutil3.so
+c9c42000-c9cfc000 r-xp 00000000 08:08 3859885                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libeditor.so
+c9cfc000-c9d00000 rwxp 000b9000 08:08 3859885                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libeditor.so
+c9d00000-c9df7000 rwxp c9d00000 00:00 0 
+c9df7000-c9e00000 ---p c9df7000 00:00 0 
+c9e00000-c9ef9000 rwxp c9e00000 00:00 0 
+c9ef9000-c9f00000 ---p c9ef9000 00:00 0 
+c9f00000-c9ffc000 rwxp c9f00000 00:00 0 
+c9ffc000-ca000000 ---p c9ffc000 00:00 0 
+ca000000-ca100000 rwxp ca000000 00:00 0 
+ca100000-ca300000 rwxp ca100000 00:00 0 
+ca300000-ca500000 rwxp ca300000 00:00 0 
+ca500000-ca5f9000 rwxp ca500000 00:00 0 
+ca5f9000-ca600000 ---p ca5f9000 00:00 0 
+ca60c000-ca62c000 r-xp 00000000 08:08 3860108                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libssl3.so
+ca62c000-ca62d000 rwxp 00020000 08:08 3860108                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libssl3.so
+ca62d000-ca62e000 rwxp ca62d000 00:00 0 
+ca62e000-ca6ad000 r-xp 00000000 08:08 312395                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libfontmanager.so
+ca6ad000-ca6b8000 rwxp 0007e000 08:08 312395                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libfontmanager.so
+ca6b8000-ca6bc000 rwxp ca6b8000 00:00 0 
+ca6bc000-ca700000 r-xp 00000000 08:08 2434154                            /usr/share/fonts/truetype/msttcorefonts/Arial.ttf
+ca700000-ca7f9000 rwxp ca700000 00:00 0 
+ca7f9000-ca800000 ---p ca7f9000 00:00 0 
+ca800000-ca8f9000 rwxp ca800000 00:00 0 
+ca8f9000-ca900000 ---p ca8f9000 00:00 0 
+ca900000-ca9f9000 rwxp ca900000 00:00 0 
+ca9f9000-caa00000 ---p ca9f9000 00:00 0 
+caa00000-caaf9000 rwxp caa00000 00:00 0 
+caaf9000-cab00000 ---p caaf9000 00:00 0 
+cab00000-cabfc000 rwxp cab00000 00:00 0 
+cabfc000-cac00000 ---p cabfc000 00:00 0 
+cac00000-cacfb000 rwxp cac00000 00:00 0 
+cacfb000-cad00000 ---p cacfb000 00:00 0 
+cad00000-cadea000 rwxp cad00000 00:00 0 
+cadea000-cae00000 ---p cadea000 00:00 0 
+cae09000-cae4c000 r-xp 00000000 08:08 319682                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/xawt/libmawt.so
+cae4c000-cae4f000 rwxp 00042000 08:08 319682                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/xawt/libmawt.so
+cae4f000-caed3000 r-xp 00000000 08:08 312389                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libawt.so
+caed3000-caeda000 rwxp 00084000 08:08 312389                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libawt.so
+caeda000-caefe000 rwxp caeda000 00:00 0 
+caefe000-caeff000 ---p caefe000 00:00 0 
+caeff000-cb6ff000 rwxp caeff000 00:00 0 
+cb700000-cb900000 rwxp cb700000 00:00 0 
+cb900000-cbb00000 rwxp cb900000 00:00 0 
+cbb00000-cbbd8000 rwxp cbb00000 00:00 0 
+cbbd8000-cbc00000 ---p cbbd8000 00:00 0 
+cbc00000-cbd00000 rwxp cbc00000 00:00 0 
+cbd00000-cbde4000 rwxp cbd00000 00:00 0 
+cbde4000-cbe00000 ---p cbde4000 00:00 0 
+cbe00000-cbf00000 rwxp cbe00000 00:00 0 
+cbf00000-cc000000 rwxp cbf00000 00:00 0 
+cc008000-cc00d000 r-xp 00000000 08:08 3859946                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libxpcom_compat_c.so
+cc00d000-cc00e000 rwxp 00005000 08:08 3859946                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libxpcom_compat_c.so
+cc00e000-cc023000 r-xp 00000000 08:08 3859929                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libprofile.so
+cc023000-cc024000 rwxp 00015000 08:08 3859929                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libprofile.so
+cc024000-cc03e000 r-xp 00000000 08:08 3860110                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libxpcom_compat.so
+cc03e000-cc03f000 rwxp 0001a000 08:08 3860110                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libxpcom_compat.so
+cc03f000-cc044000 r-xp 00000000 08:08 3859934                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libtxmgr.so
+cc044000-cc045000 rwxp 00004000 08:08 3859934                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libtxmgr.so
+cc045000-cc096000 r-xp 00000000 08:08 90346                              /usr/share/fonts/truetype/ttf-dejavu/DejaVuSerif.ttf
+cc096000-cc0ca000 r-xp 00000000 08:08 3859907                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libmork.so
+cc0ca000-cc0cc000 rwxp 00034000 08:08 3859907                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libmork.so
+cc100000-cc300000 rwxp cc100000 00:00 0 
+cc300000-cc3fd000 rwxp cc300000 00:00 0 
+cc3fd000-cc400000 ---p cc3fd000 00:00 0 
+cc400000-cc500000 rwxp cc400000 00:00 0 
+cc500000-cc6f9000 rwxp cc500000 00:00 0 
+cc6f9000-cc700000 ---p cc6f9000 00:00 0 
+cc700000-cc7f3000 rwxp cc700000 00:00 0 
+cc7f3000-cc800000 ---p cc7f3000 00:00 0 
+cc800000-cc900000 rwxp cc800000 00:00 0 
+cc900000-cc9ed000 rwxp cc900000 00:00 0 
+cc9ed000-cca00000 ---p cc9ed000 00:00 0 
+cca00000-ccb00000 rwxp cca00000 00:00 0 
+ccb00000-ccd00000 rwxp ccb00000 00:00 0 
+ccd00000-ccf00000 rwxp ccd00000 00:00 0 
+ccf00000-cd000000 rwxp ccf00000 00:00 0 
+cd02d000-cd031000 r-xp 00000000 08:08 312963                             /usr/lib32/gtk-2.0/2.10.0/loaders/libpixbufloader-png.so
+cd031000-cd032000 r-xp 00003000 08:08 312963                             /usr/lib32/gtk-2.0/2.10.0/loaders/libpixbufloader-png.so
+cd032000-cd033000 rwxp 00004000 08:08 312963                             /usr/lib32/gtk-2.0/2.10.0/loaders/libpixbufloader-png.so
+cd033000-cd04d000 r-xs 00000000 08:08 50288                              /usr/share/mime/mime.cache
+cd0ce000-cd0d5000 r-xp 00000000 08:08 3859924                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libp3p.so
+cd0d5000-cd0d6000 rwxp 00006000 08:08 3859924                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libp3p.so
+cd0d6000-cd0e0000 r-xp 00000000 08:08 3859883                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libcookie.so
+cd0e0000-cd0e1000 rwxp 00009000 08:08 3859883                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libcookie.so
+cd0e1000-cd0e2000 ---p cd0e1000 00:00 0 
+cd0e2000-cd8e2000 rwxp cd0e2000 00:00 0 
+cd8e2000-cd8ed000 r-xp 00000000 08:08 3859900                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libjar50.so
+cd8ed000-cd8ee000 rwxp 0000a000 08:08 3859900                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libjar50.so
+cd8ee000-cd9a9000 r-xp 00000000 08:08 3859936                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libuconv.so
+cd9a9000-cd9af000 rwxp 000bb000 08:08 3859936                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libuconv.so
+cd9af000-cd9b9000 rwxp cd9af000 00:00 0 
+cd9b9000-cda12000 r-xp 00000000 08:08 3859892                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libhtmlpars.so
+cda12000-cda17000 rwxp 00058000 08:08 3859892                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libhtmlpars.so
+cda17000-cda2e000 r-xp 00000000 08:08 3859881                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libchrome.so
+cda2e000-cda2f000 rwxp 00017000 08:08 3859881                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libchrome.so
+cda2f000-cda58000 r-xp 00000000 08:08 3859891                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libgkplugin.so
+cda58000-cda5a000 rwxp 00028000 08:08 3859891                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libgkplugin.so
+cda5a000-cda72000 r-xp 00000000 08:08 3859923                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/liboji.so
+cda72000-cda73000 rwxp 00017000 08:08 3859923                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/liboji.so
+cda73000-cda8c000 r-xp 00000000 08:08 3860094                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libjsj.so
+cda8c000-cda8e000 rwxp 00018000 08:08 3860094                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libjsj.so
+cda8e000-cdb01000 r-xp 00000000 08:08 3859877                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libappcomps.so
+cdb01000-cdb04000 rwxp 00073000 08:08 3859877                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libappcomps.so
+cdb04000-cdb50000 r-xp 00000000 08:08 3859884                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libdocshell.so
+cdb50000-cdb53000 rwxp 0004c000 08:08 3859884                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libdocshell.so
+cdb53000-cdb84000 r-xp 00000000 08:08 3859888                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libgfx_gtk.so
+cdb84000-cdb86000 rwxp 00031000 08:08 3859888                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libgfx_gtk.so
+cdb86000-cdb97000 r-xp 00000000 08:08 3859942                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libwebbrwsr.so
+cdb97000-cdb98000 rwxp 00011000 08:08 3859942                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libwebbrwsr.so
+cdb98000-cdbce000 r-xp 00000000 08:08 737470                             /lib32/libdbus-1.so.3.4.0
+cdbce000-cdbcf000 r-xp 00035000 08:08 737470                             /lib32/libdbus-1.so.3.4.0
+cdbcf000-cdbd0000 rwxp 00036000 08:08 737470                             /lib32/libdbus-1.so.3.4.0
+cdbd0000-cdbec000 r-xp 00000000 08:08 5702192                            /usr/lib32/libdbus-glib-1.so.2.1.0
+cdbec000-cdbed000 r-xp 0001b000 08:08 5702192                            /usr/lib32/libdbus-glib-1.so.2.1.0
+cdbed000-cdbee000 rwxp 0001c000 08:08 5702192                            /usr/lib32/libdbus-glib-1.so.2.1.0
+cdbee000-cdc37000 r-xp 00000000 08:08 5702322                            /usr/lib32/libORBit-2.so.0.1.0
+cdc37000-cdc3f000 r-xp 00049000 08:08 5702322                            /usr/lib32/libORBit-2.so.0.1.0
+cdc3f000-cdc41000 rwxp 00051000 08:08 5702322                            /usr/lib32/libORBit-2.so.0.1.0
+cdc41000-cdc6f000 r-xp 00000000 08:08 5702211                            /usr/lib32/libgconf-2.so.4.1.5
+cdc6f000-cdc70000 ---p 0002e000 08:08 5702211                            /usr/lib32/libgconf-2.so.4.1.5
+cdc70000-cdc71000 r-xp 0002e000 08:08 5702211                            /usr/lib32/libgconf-2.so.4.1.5
+cdc71000-cdc73000 rwxp 0002f000 08:08 5702211                            /usr/lib32/libgconf-2.so.4.1.5
+cdc73000-cdc9b000 r-xp 00000000 08:08 3859944                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libwidget_gtk2.so
+cdc9b000-cdc9e000 rwxp 00028000 08:08 3859944                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libwidget_gtk2.so
+cdc9e000-cdca1000 r-xp 00000000 08:08 737498                             /lib32/libuuid.so.1.2
+cdca1000-cdca2000 r-xp 00002000 08:08 737498                             /lib32/libuuid.so.1.2
+cdca2000-cdca3000 rwxp 00003000 08:08 737498                             /lib32/libuuid.so.1.2
+cdca3000-cdcb8000 r-xp 00000000 08:08 5702262                            /usr/lib32/libICE.so.6.3.0
+cdcb8000-cdcb9000 rwxp 00014000 08:08 5702262                            /usr/lib32/libICE.so.6.3.0
+cdcb9000-cdcbb000 rwxp cdcb9000 00:00 0 
+cdcbb000-cdcc2000 r-xp 00000000 08:08 5702365                            /usr/lib32/libSM.so.6.0.0
+cdcc2000-cdcc3000 r-xp 00006000 08:08 5702365                            /usr/lib32/libSM.so.6.0.0
+cdcc3000-cdcc4000 rwxp 00007000 08:08 5702365                            /usr/lib32/libSM.so.6.0.0
+cdcc4000-cdd13000 r-xp 00000000 08:08 5702456                            /usr/lib32/libXt.so.6.0.0
+cdd13000-cdd14000 r-xp 0004f000 08:08 5702456                            /usr/lib32/libXt.so.6.0.0
+cdd14000-cdd17000 rwxp 00050000 08:08 5702456                            /usr/lib32/libXt.so.6.0.0
+cdd1a000-cdd21000 r-xp 00000000 08:08 3859925                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libpipboot.so
+cdd21000-cdd22000 rwxp 00007000 08:08 3859925                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libpipboot.so
+cdd22000-cdd2f000 r-xp 00000000 08:08 3859751                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libgwt-ll.so
+cdd2f000-cdd30000 rwxp 0000d000 08:08 3859751                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libgwt-ll.so
+cdd30000-cdd34000 r-xp 00000000 08:08 3860093                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libgtkxtbin.so
+cdd34000-cdd35000 rwxp 00003000 08:08 3860093                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libgtkxtbin.so
+cdd35000-cdd3a000 r-xp 00000000 08:08 3859932                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libsystem-pref.so
+cdd3a000-cdd3b000 rwxp 00005000 08:08 3859932                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libsystem-pref.so
+cdd3b000-cdd4e000 r-xp 00000000 08:08 3859901                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libjsd.so
+cdd4e000-cdd4f000 rwxp 00013000 08:08 3859901                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libjsd.so
+cdd4f000-cdd78000 r-xp 00000000 08:08 3859930                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/librdf.so
+cdd78000-cdd7a000 rwxp 00028000 08:08 3859930                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/librdf.so
+cdd7a000-cdda7000 r-xp 00000000 08:08 3859894                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libimglib2.so
+cdda7000-cdda8000 rwxp 0002d000 08:08 3859894                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libimglib2.so
+cdda8000-cdde0000 r-xp 00000000 08:08 3859893                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libi18n.so
+cdde0000-cdde3000 rwxp 00037000 08:08 3859893                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libi18n.so
+cdde3000-cdde4000 ---p cdde3000 00:00 0 
+cdde4000-ce5e4000 rwxp cdde4000 00:00 0 
+ce5e4000-ce628000 r-xp 00000000 08:08 3859947                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libxpconnect.so
+ce628000-ce62b000 rwxp 00043000 08:08 3859947                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libxpconnect.so
+ce62b000-ce62c000 rwxp ce62b000 00:00 0 
+ce62c000-ce63e000 r-xp 00000000 08:08 5702423                            /usr/lib32/libXft.so.2.1.13
+ce63e000-ce63f000 r-xp 00011000 08:08 5702423                            /usr/lib32/libXft.so.2.1.13
+ce63f000-ce640000 rwxp 00012000 08:08 5702423                            /usr/lib32/libXft.so.2.1.13
+ce640000-ce64b000 r-xp 00000000 08:08 5702328                            /usr/lib32/libpangox-1.0.so.0.2400.1
+ce64b000-ce64c000 r-xp 0000a000 08:08 5702328                            /usr/lib32/libpangox-1.0.so.0.2400.1
+ce64c000-ce64d000 rwxp 0000b000 08:08 5702328                            /usr/lib32/libpangox-1.0.so.0.2400.1
+ce650000-ce665000 r-xp 00000000 08:08 3859880                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libcaps.so
+ce665000-ce666000 rwxp 00014000 08:08 3859880                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libcaps.so
+ce666000-ceae2000 r-xp 00000000 08:08 3859890                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libgklayout.so
+ceae2000-ceb1d000 rwxp 0047c000 08:08 3859890                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libgklayout.so
+ceb1d000-ceb23000 rwxp ceb1d000 00:00 0 
+ceb23000-cebe8000 r-xp 00000000 08:08 3859917                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libnecko.so
+cebe8000-cebee000 rwxp 000c4000 08:08 3859917                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libnecko.so
+cebee000-cebff000 r-xp 00000000 08:08 3859928                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libpref.so
+cebff000-cec00000 rwxp 00011000 08:08 3859928                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libpref.so
+cec00000-ced00000 rwxp cec00000 00:00 0 
+ced03000-ced0f000 r-xp 00000000 08:08 3860097                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libmozz.so
+ced0f000-ced11000 rwxp 0000b000 08:08 3860097                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libmozz.so
+ced11000-cedf5000 r-xp 00000000 08:08 3473427                            /usr/lib32/libstdc++.so.6.0.10
+cedf5000-cedf9000 r-xp 000e3000 08:08 3473427                            /usr/lib32/libstdc++.so.6.0.10
+cedf9000-cedfa000 rwxp 000e7000 08:08 3473427                            /usr/lib32/libstdc++.so.6.0.10
+cedfa000-cee00000 rwxp cedfa000 00:00 0 
+cee00000-ceef8000 rwxp cee00000 00:00 0 
+ceef8000-cef00000 ---p ceef8000 00:00 0 
+cef01000-cef03000 r-xp 00000000 08:08 3859908                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libmozfind.so
+cef03000-cef04000 rwxp 00001000 08:08 3859908                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libmozfind.so
+cef04000-cef0a000 r-xp 00000000 08:08 5702329                            /usr/lib32/libpangoxft-1.0.so.0.2400.1
+cef0a000-cef0b000 r-xp 00005000 08:08 5702329                            /usr/lib32/libpangoxft-1.0.so.0.2400.1
+cef0b000-cef0c000 rwxp 00006000 08:08 5702329                            /usr/lib32/libpangoxft-1.0.so.0.2400.1
+cef0c000-cef1b000 r-xp 00000000 08:08 3859935                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libtypeaheadfind.so
+cef1b000-cef1c000 rwxp 0000e000 08:08 3859935                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libtypeaheadfind.so
+cef1c000-cef47000 r-xp 00000000 08:08 3859886                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libembedcomponents.so
+cef47000-cef49000 rwxp 0002a000 08:08 3859886                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/components/libembedcomponents.so
+cef49000-cefc7000 r-xp 00000000 08:08 3860096                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libmozjs.so
+cefc7000-cefcb000 rwxp 0007e000 08:08 3860096                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libmozjs.so
+cefcb000-cefec000 r-xp 00000000 08:08 3860091                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libgkgfx.so
+cefec000-cefed000 rwxp 00021000 08:08 3860091                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libgkgfx.so
+cefed000-cefef000 r-xp 00000000 08:08 5703712                            /usr/lib32/gconv/UTF-16.so
+cefef000-ceff0000 r-xp 00001000 08:08 5703712                            /usr/lib32/gconv/UTF-16.so
+ceff0000-ceff1000 rwxp 00002000 08:08 5703712                            /usr/lib32/gconv/UTF-16.so
+ceff1000-ceff6000 r-xp 00000000 08:08 3859756                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-mozilla17-profile-gtk-3235.so
+ceff6000-ceff7000 rwxp 00004000 08:08 3859756                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-mozilla17-profile-gtk-3235.so
+ceff7000-cf009000 r-xp 00000000 08:08 737450                             /lib32/libresolv-2.9.so
+cf009000-cf00a000 r-xp 00011000 08:08 737450                             /lib32/libresolv-2.9.so
+cf00a000-cf00b000 rwxp 00012000 08:08 737450                             /lib32/libresolv-2.9.so
+cf00b000-cf00d000 rwxp cf00b000 00:00 0 
+cf00d000-cf00f000 r-xp 00000000 08:08 5703463                            /usr/lib32/libnss_mdns4.so.2
+cf00f000-cf010000 rwxp 00001000 08:08 5703463                            /usr/lib32/libnss_mdns4.so.2
+cf010000-cf023000 r-xp 00000000 08:08 3859754                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-mozilla-gtk-3235.so
+cf023000-cf024000 rwxp 00012000 08:08 3859754                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-mozilla-gtk-3235.so
+cf024000-cf026000 r-xs 00001000 08:08 18480                              /usr/lib/jvm/java-6-sun-1.6.0.13/jre/lib/ext/dnsns.jar
+cf026000-cf029000 ---p cf026000 00:00 0 
+cf029000-cf077000 rwxp cf029000 00:00 0 
+cf077000-cf07a000 ---p cf077000 00:00 0 
+cf07a000-cf0c8000 rwxp cf07a000 00:00 0 
+cf0c8000-cf100000 r-xs 0020a000 08:08 5349410                            /home/mzepedas/workspace/eclipse/Client/war/WEB-INF/lib/gwt-incubator-march-02-2009.jar
+cf100000-cf1fe000 rwxp cf100000 00:00 0 
+cf1fe000-cf200000 ---p cf1fe000 00:00 0 
+cf200000-cf201000 r-xp cf200000 00:00 0 
+cf201000-cf205000 r-xs 00034000 08:08 312354                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/ext/sunpkcs11.jar
+cf205000-cf20a000 r-xp 00000000 08:08 737443                             /lib32/libnss_dns-2.9.so
+cf20a000-cf20b000 r-xp 00004000 08:08 737443                             /lib32/libnss_dns-2.9.so
+cf20b000-cf20c000 rwxp 00005000 08:08 737443                             /lib32/libnss_dns-2.9.so
+cf20c000-cf20e000 r-xp 00000000 08:08 5703464                            /usr/lib32/libnss_mdns4_minimal.so.2
+cf20e000-cf20f000 rwxp 00001000 08:08 5703464                            /usr/lib32/libnss_mdns4_minimal.so.2
+cf20f000-cf222000 r-xp 00000000 08:08 312378                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libnet.so
+cf222000-cf223000 rwxp 00013000 08:08 312378                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libnet.so
+cf223000-cf235000 r-xs 00092000 08:08 3113046                            /home/mzepedas/workspace/eclipse/Client/war/WEB-INF/lib/gwt-maps.jar
+cf235000-cf295000 rwxs 00000000 00:09 2490396                            /SYSV00000000 (deleted)
+cf295000-cf2f5000 rwxs 00000000 00:09 2424858                            /SYSV00000000 (deleted)
+cf2f5000-cf38d000 r-xp 00000000 08:08 90320                              /usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf
+cf38d000-cf38f000 r-xp 00000000 08:08 313171                             /usr/lib32/pango/1.6.0/modules/pango-basic-fc.so
+cf38f000-cf390000 r-xp 00001000 08:08 313171                             /usr/lib32/pango/1.6.0/modules/pango-basic-fc.so
+cf390000-cf391000 rwxp 00002000 08:08 313171                             /usr/lib32/pango/1.6.0/modules/pango-basic-fc.so
+cf391000-cf397000 r-xs 00000000 08:08 1239369                            /home/mzepedas/.fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-x86.cache-2
+cf397000-cf399000 r-xs 00000000 08:08 1239353                            /home/mzepedas/.fontconfig/99e8ed0e538f840c565b6ed5dad60d56-x86.cache-2
+cf399000-cf39c000 r-xs 00000000 08:08 1239356                            /home/mzepedas/.fontconfig/e383d7ea5fbe662a33d9b44caf393297-x86.cache-2
+cf39c000-cf39d000 r-xs 00000000 08:08 1239368                            /home/mzepedas/.fontconfig/fd9505950c048a77dc4b710eb6a628ed-x86.cache-2
+cf39d000-cf39e000 r-xs 00000000 08:08 1239367                            /home/mzepedas/.fontconfig/a2ab74764b07279e7c36ddb1d302cf26-x86.cache-2
+cf39e000-cf3a1000 r-xs 00000000 08:08 1239383                            /home/mzepedas/.fontconfig/6eb3985aa4124903f6ff08ba781cd364-x86.cache-2
+cf3a1000-cf3a2000 r-xs 00000000 08:08 1239355                            /home/mzepedas/.fontconfig/4c73fe0c47614734b17d736dbde7580a-x86.cache-2
+cf3a2000-cf3a4000 r-xs 00000000 08:08 1239366                            /home/mzepedas/.fontconfig/646addb8444faa74ee138aa00ab0b6a0-x86.cache-2
+cf3a4000-cf3a7000 r-xs 00000000 08:08 1239354                            /home/mzepedas/.fontconfig/a755afe4a08bf5b97852ceb7400b47bc-x86.cache-2
+cf3a7000-cf3ae000 r-xs 00000000 08:08 1239349                            /home/mzepedas/.fontconfig/6d41288fd70b0be22e8c3a91e032eec0-x86.cache-2
+cf3ae000-cf3b1000 r-xs 00000000 08:08 1239351                            /home/mzepedas/.fontconfig/de156ccd2eddbdc19d37a45b8b2aac9c-x86.cache-2
+cf3b1000-cf3b3000 r-xs 00000000 08:08 1239339                            /home/mzepedas/.fontconfig/da1bd5ca8443ffe22927a23ce431d198-x86.cache-2
+cf3b3000-cf3bb000 r-xs 00000000 08:08 1239350                            /home/mzepedas/.fontconfig/e3de0de479f42330eadf588a55fb5bf4-x86.cache-2
+cf3bb000-cf3c6000 r-xs 00000000 08:08 1239347                            /home/mzepedas/.fontconfig/0f34bcd4b6ee430af32735b75db7f02b-x86.cache-2
+cf3c6000-cf3c8000 r-xs 00000000 08:08 1239335                            /home/mzepedas/.fontconfig/ddd4086aec35a5275babba44bb759c3c-x86.cache-2
+cf3c8000-cf3c9000 r-xs 00000000 08:08 1239345                            /home/mzepedas/.fontconfig/4794a0821666d79190d59a36cb4f44b5-x86.cache-2
+cf3c9000-cf3eb000 r-xs 00000000 08:08 1239346                            /home/mzepedas/.fontconfig/365b55f210c0a22e9a19e35191240f32-x86.cache-2
+cf3eb000-cf413000 r-xp 00000000 08:08 312945                             /usr/lib32/gtk-2.0/2.10.0/engines/libclearlooks.so
+cf413000-cf414000 r-xp 00027000 08:08 312945                             /usr/lib32/gtk-2.0/2.10.0/engines/libclearlooks.so
+cf414000-cf415000 rwxp 00028000 08:08 312945                             /usr/lib32/gtk-2.0/2.10.0/engines/libclearlooks.so
+cf415000-cf500000 r-xp 00000000 08:08 5709970                            /usr/lib/locale/en_US.utf8/LC_COLLATE
+cf500000-cf5fe000 rwxp cf500000 00:00 0 
+cf5fe000-cf600000 ---p cf5fe000 00:00 0 
+cf600000-cf603000 rwxs 00000000 00:09 2457627                            /SYSV00000000 (deleted)
+cf603000-cf606000 r-xs 00000000 08:08 1239399                            /home/mzepedas/.fontconfig/de9486f0b47a4d768a594cb4198cb1c6-x86.cache-2
+cf606000-cf60d000 r-xs 00000000 08:08 1239344                            /home/mzepedas/.fontconfig/d52a8644073d54c13679302ca1180695-x86.cache-2
+cf60d000-cf613000 r-xs 00000000 08:08 1239441                            /home/mzepedas/.fontconfig/089dead882dea3570ffc31a9898cfb69-x86.cache-2
+cf613000-cf639000 r-xp 00000000 08:08 3859752                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-gtk-3235.so
+cf639000-cf63b000 rwxp 00025000 08:08 3859752                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-gtk-3235.so
+cf63b000-cf63c000 rwxp cf63b000 00:00 0 
+cf63c000-cf6ec000 r-xp 00000000 08:08 5702373                            /usr/lib32/libstdc++.so.5.0.7
+cf6ec000-cf6f1000 rwxp 000af000 08:08 5702373                            /usr/lib32/libstdc++.so.5.0.7
+cf6f1000-cf6f7000 rwxp cf6f1000 00:00 0 
+cf6f7000-cf6fe000 r-xs 00000000 08:08 1239433                            /home/mzepedas/.fontconfig/e13b20fdb08344e0e664864cc2ede53d-x86.cache-2
+cf6fe000-cf700000 r-xs 00000000 08:08 1239388                            /home/mzepedas/.fontconfig/7ef2298fde41cc6eeb7af42e48b7d293-x86.cache-2
+cf700000-cf708000 r-xp 00000000 08:08 312942                             /usr/lib32/gtk-2.0/2.10.0/engines/libpixmap.so
+cf708000-cf709000 r-xp 00007000 08:08 312942                             /usr/lib32/gtk-2.0/2.10.0/engines/libpixmap.so
+cf709000-cf70a000 rwxp 00008000 08:08 312942                             /usr/lib32/gtk-2.0/2.10.0/engines/libpixmap.so
+cf70a000-cf70b000 r-xp 00000000 08:08 5710641                            /usr/lib/locale/en_US.utf8/LC_NUMERIC
+cf70b000-cf70c000 r-xp 00000000 08:08 5710030                            /usr/lib/locale/en_US.utf8/LC_TIME
+cf70c000-cf70d000 r-xp 00000000 08:08 5710031                            /usr/lib/locale/en_US.utf8/LC_MONETARY
+cf70d000-cf70e000 r-xp 00000000 08:08 5710645                            /usr/lib/locale/en_US.utf8/LC_MESSAGES/SYS_LC_MESSAGES
+cf70e000-cf70f000 r-xp 00000000 08:08 5710681                            /usr/lib/locale/en_US.utf8/LC_PAPER
+cf70f000-cf7c1000 r-xp 00000000 08:08 3860109                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libxpcom.so
+cf7c1000-cf7c7000 rwxp 000b2000 08:08 3860109                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libxpcom.so
+cf7c7000-cf7f8000 r-xp 00000000 08:08 3860099                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libnspr4.so
+cf7f8000-cf7fa000 rwxp 00031000 08:08 3860099                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libnspr4.so
+cf7fa000-cf7fb000 rwxp cf7fa000 00:00 0 
+cf7fb000-cf7ff000 r-xp 00000000 08:08 5702417                            /usr/lib32/libXdmcp.so.6.0.0
+cf7ff000-cf800000 rwxp 00003000 08:08 5702417                            /usr/lib32/libXdmcp.so.6.0.0
+cf800000-cf824000 r-xp 00000000 08:08 5702200                            /usr/lib32/libexpat.so.1.5.2
+cf824000-cf826000 r-xp 00023000 08:08 5702200                            /usr/lib32/libexpat.so.1.5.2
+cf826000-cf827000 rwxp 00025000 08:08 5702200                            /usr/lib32/libexpat.so.1.5.2
+cf827000-cf83f000 r-xp 00000000 08:08 737483                             /lib32/libselinux.so.1
+cf83f000-cf840000 r-xp 00017000 08:08 737483                             /lib32/libselinux.so.1
+cf840000-cf841000 rwxp 00018000 08:08 737483                             /lib32/libselinux.so.1
+cf841000-cf847000 r-xp 00000000 08:08 5702407                            /usr/lib32/libxcb-render.so.0.0.0
+cf847000-cf848000 r-xp 00005000 08:08 5702407                            /usr/lib32/libxcb-render.so.0.0.0
+cf848000-cf849000 rwxp 00006000 08:08 5702407                            /usr/lib32/libxcb-render.so.0.0.0
+cf849000-cf84c000 r-xp 00000000 08:08 5702405                            /usr/lib32/libxcb-render-util.so.0.0.0
+cf84c000-cf84d000 r-xp 00002000 08:08 5702405                            /usr/lib32/libxcb-render-util.so.0.0.0
+cf84d000-cf84e000 rwxp 00003000 08:08 5702405                            /usr/lib32/libxcb-render-util.so.0.0.0
+cf84e000-cf872000 r-xp 00000000 08:08 5702334                            /usr/lib32/libpng12.so.0.27.0
+cf872000-cf873000 r-xp 00023000 08:08 5702334                            /usr/lib32/libpng12.so.0.27.0
+cf873000-cf874000 rwxp 00024000 08:08 5702334                            /usr/lib32/libpng12.so.0.27.0
+cf874000-cf887000 r-xp 00000000 08:08 5702193                            /usr/lib32/libdirect-1.0.so.0.1.0
+cf887000-cf888000 r-xp 00012000 08:08 5702193                            /usr/lib32/libdirect-1.0.so.0.1.0
+cf888000-cf889000 rwxp 00013000 08:08 5702193                            /usr/lib32/libdirect-1.0.so.0.1.0
+cf889000-cf890000 r-xp 00000000 08:08 5702195                            /usr/lib32/libfusion-1.0.so.0.1.0
+cf890000-cf891000 r-xp 00006000 08:08 5702195                            /usr/lib32/libfusion-1.0.so.0.1.0
+cf891000-cf892000 rwxp 00007000 08:08 5702195                            /usr/lib32/libfusion-1.0.so.0.1.0
+cf892000-cf8f6000 r-xp 00000000 08:08 5702194                            /usr/lib32/libdirectfb-1.0.so.0.1.0
+cf8f6000-cf8f7000 r-xp 00063000 08:08 5702194                            /usr/lib32/libdirectfb-1.0.so.0.1.0
+cf8f7000-cf8f8000 rwxp 00064000 08:08 5702194                            /usr/lib32/libdirectfb-1.0.so.0.1.0
+cf8f8000-cf938000 r-xp 00000000 08:08 5702333                            /usr/lib32/libpixman-1.so.0.13.2
+cf938000-cf93a000 r-xp 0003f000 08:08 5702333                            /usr/lib32/libpixman-1.so.0.13.2
+cf93a000-cf93b000 rwxp 00041000 08:08 5702333                            /usr/lib32/libpixman-1.so.0.13.2
+cf93b000-cf953000 r-xp 00000000 08:08 5702409                            /usr/lib32/libxcb.so.1.1.0
+cf953000-cf954000 r-xp 00017000 08:08 5702409                            /usr/lib32/libxcb.so.1.1.0
+cf954000-cf955000 rwxp 00018000 08:08 5702409                            /usr/lib32/libxcb.so.1.1.0
+cf955000-cf957000 r-xp 00000000 08:08 5702401                            /usr/lib32/libXau.so.6.0.0
+cf957000-cf958000 r-xp 00001000 08:08 5702401                            /usr/lib32/libXau.so.6.0.0
+cf958000-cf959000 rwxp 00002000 08:08 5702401                            /usr/lib32/libXau.so.6.0.0
+cf959000-cf989000 r-xp 00000000 08:08 737481                             /lib32/libpcre.so.3.12.1
+cf989000-cf98a000 r-xp 0002f000 08:08 737481                             /lib32/libpcre.so.3.12.1
+cf98a000-cf98b000 rwxp 00030000 08:08 737481                             /lib32/libpcre.so.3.12.1
+cf98b000-cfa41000 r-xp 00000000 08:08 5702217                            /usr/lib32/libglib-2.0.so.0.2000.1
+cfa41000-cfa42000 r-xp 000b5000 08:08 5702217                            /usr/lib32/libglib-2.0.so.0.2000.1
+cfa42000-cfa43000 rwxp 000b6000 08:08 5702217                            /usr/lib32/libglib-2.0.so.0.2000.1
+cfa43000-cfa46000 r-xp 00000000 08:08 5702218                            /usr/lib32/libgmodule-2.0.so.0.2000.1
+cfa46000-cfa47000 r-xp 00002000 08:08 5702218                            /usr/lib32/libgmodule-2.0.so.0.2000.1
+cfa47000-cfa48000 rwxp 00003000 08:08 5702218                            /usr/lib32/libgmodule-2.0.so.0.2000.1
+cfa48000-cfa84000 r-xp 00000000 08:08 5702219                            /usr/lib32/libgobject-2.0.so.0.2000.1
+cfa84000-cfa85000 r-xp 0003b000 08:08 5702219                            /usr/lib32/libgobject-2.0.so.0.2000.1
+cfa85000-cfa86000 rwxp 0003c000 08:08 5702219                            /usr/lib32/libgobject-2.0.so.0.2000.1
+cfa86000-cfab1000 r-xp 00000000 08:08 5702207                            /usr/lib32/libfontconfig.so.1.3.0
+cfab1000-cfab2000 r-xp 0002a000 08:08 5702207                            /usr/lib32/libfontconfig.so.1.3.0
+cfab2000-cfab3000 rwxp 0002b000 08:08 5702207                            /usr/lib32/libfontconfig.so.1.3.0
+cfab3000-cfac7000 r-xp 00000000 08:08 3473434                            /usr/lib32/libz.so.1.2.3.3
+cfac7000-cfac8000 r-xp 00013000 08:08 3473434                            /usr/lib32/libz.so.1.2.3.3
+cfac8000-cfac9000 rwxp 00014000 08:08 3473434                            /usr/lib32/libz.so.1.2.3.3
+cfac9000-cfb3b000 r-xp 00000000 08:08 5702208                            /usr/lib32/libfreetype.so.6.3.20
+cfb3b000-cfb3f000 r-xp 00071000 08:08 5702208                            /usr/lib32/libfreetype.so.6.3.20
+cfb3f000-cfb40000 rwxp 00075000 08:08 5702208                            /usr/lib32/libfreetype.so.6.3.20
+cfb40000-cfb80000 r-xp 00000000 08:08 5702325                            /usr/lib32/libpango-1.0.so.0.2400.1
+cfb80000-cfb81000 ---p 00040000 08:08 5702325                            /usr/lib32/libpango-1.0.so.0.2400.1
+cfb81000-cfb82000 r-xp 00040000 08:08 5702325                            /usr/lib32/libpango-1.0.so.0.2400.1
+cfb82000-cfb83000 rwxp 00041000 08:08 5702325                            /usr/lib32/libpango-1.0.so.0.2400.1
+cfb83000-cfbaa000 r-xp 00000000 08:08 5702327                            /usr/lib32/libpangoft2-1.0.so.0.2400.1
+cfbaa000-cfbab000 r-xp 00026000 08:08 5702327                            /usr/lib32/libpangoft2-1.0.so.0.2400.1
+cfbab000-cfbac000 rwxp 00027000 08:08 5702327                            /usr/lib32/libpangoft2-1.0.so.0.2400.1
+cfbac000-cfc17000 r-xp 00000000 08:08 5702216                            /usr/lib32/libgio-2.0.so.0.2000.1
+cfc17000-cfc18000 ---p 0006b000 08:08 5702216                            /usr/lib32/libgio-2.0.so.0.2000.1
+cfc18000-cfc19000 r-xp 0006b000 08:08 5702216                            /usr/lib32/libgio-2.0.so.0.2000.1
+cfc19000-cfc1a000 rwxp 0006c000 08:08 5702216                            /usr/lib32/libgio-2.0.so.0.2000.1
+cfc1a000-cfc91000 r-xp 00000000 08:08 5702156                            /usr/lib32/libcairo.so.2.10800.6
+cfc91000-cfc93000 r-xp 00076000 08:08 5702156                            /usr/lib32/libcairo.so.2.10800.6
+cfc93000-cfc94000 rwxp 00078000 08:08 5702156                            /usr/lib32/libcairo.so.2.10800.6
+cfc94000-cfcad000 r-xp 00000000 08:08 5702143                            /usr/lib32/libatk-1.0.so.0.2609.1
+cfcad000-cfcae000 r-xp 00019000 08:08 5702143                            /usr/lib32/libatk-1.0.so.0.2609.1
+cfcae000-cfcaf000 rwxp 0001a000 08:08 5702143                            /usr/lib32/libatk-1.0.so.0.2609.1
+cfcaf000-cfcb3000 r-xp 00000000 08:08 5702421                            /usr/lib32/libXfixes.so.3.1.0
+cfcb3000-cfcb4000 rwxp 00003000 08:08 5702421                            /usr/lib32/libXfixes.so.3.1.0
+cfcb4000-cfcb6000 r-xp 00000000 08:08 5702415                            /usr/lib32/libXdamage.so.1.1.0
+cfcb6000-cfcb7000 rwxp 00001000 08:08 5702415                            /usr/lib32/libXdamage.so.1.1.0
+cfcb7000-cfcb9000 r-xp 00000000 08:08 5702411                            /usr/lib32/libXcomposite.so.1.0.0
+cfcb9000-cfcba000 r-xp 00001000 08:08 5702411                            /usr/lib32/libXcomposite.so.1.0.0
+cfcba000-cfcbb000 rwxp 00002000 08:08 5702411                            /usr/lib32/libXcomposite.so.1.0.0
+cfcbb000-cfda5000 r-xp 00000000 08:08 5702399                            /usr/lib32/libX11.so.6.2.0
+cfda5000-cfda6000 ---p 000ea000 08:08 5702399                            /usr/lib32/libX11.so.6.2.0
+cfda6000-cfda7000 r-xp 000ea000 08:08 5702399                            /usr/lib32/libX11.so.6.2.0
+cfda7000-cfda9000 rwxp 000eb000 08:08 5702399                            /usr/lib32/libX11.so.6.2.0
+cfda9000-cfdaa000 rwxp cfda9000 00:00 0 
+cfdaa000-cfdb4000 r-xp 00000000 08:08 5702326                            /usr/lib32/libpangocairo-1.0.so.0.2400.1
+cfdb4000-cfdb5000 r-xp 00009000 08:08 5702326                            /usr/lib32/libpangocairo-1.0.so.0.2400.1
+cfdb5000-cfdb6000 rwxp 0000a000 08:08 5702326                            /usr/lib32/libpangocairo-1.0.so.0.2400.1
+cfdb6000-cfdce000 r-xp 00000000 08:08 5702256                            /usr/lib32/libgdk_pixbuf-2.0.so.0.1600.1
+cfdce000-cfdcf000 r-xp 00017000 08:08 5702256                            /usr/lib32/libgdk_pixbuf-2.0.so.0.1600.1
+cfdcf000-cfdd0000 rwxp 00018000 08:08 5702256                            /usr/lib32/libgdk_pixbuf-2.0.so.0.1600.1
+cfdd0000-cfdd8000 r-xp 00000000 08:08 5702413                            /usr/lib32/libXcursor.so.1.0.2
+cfdd8000-cfdd9000 rwxp 00007000 08:08 5702413                            /usr/lib32/libXcursor.so.1.0.2
+cfdd9000-cfddf000 r-xp 00000000 08:08 5702450                            /usr/lib32/libXrandr.so.2.2.0
+cfddf000-cfde0000 r-xp 00006000 08:08 5702450                            /usr/lib32/libXrandr.so.2.2.0
+cfde0000-cfde1000 rwxp 00007000 08:08 5702450                            /usr/lib32/libXrandr.so.2.2.0
+cfde1000-cfde9000 r-xp 00000000 08:08 5702425                            /usr/lib32/libXi.so.6.0.0
+cfde9000-cfdea000 r-xp 00007000 08:08 5702425                            /usr/lib32/libXi.so.6.0.0
+cfdea000-cfdeb000 rwxp 00008000 08:08 5702425                            /usr/lib32/libXi.so.6.0.0
+cfdeb000-cfdf3000 r-xp 00000000 08:08 5702451                            /usr/lib32/libXrender.so.1.3.0
+cfdf3000-cfdf4000 r-xp 00007000 08:08 5702451                            /usr/lib32/libXrender.so.1.3.0
+cfdf4000-cfdf5000 rwxp 00008000 08:08 5702451                            /usr/lib32/libXrender.so.1.3.0
+cfdf5000-cfe03000 r-xp 00000000 08:08 5702419                            /usr/lib32/libXext.so.6.4.0
+cfe03000-cfe04000 r-xp 0000d000 08:08 5702419                            /usr/lib32/libXext.so.6.4.0
+cfe04000-cfe05000 rwxp 0000e000 08:08 5702419                            /usr/lib32/libXext.so.6.4.0
+cfe05000-cfe8e000 r-xp 00000000 08:08 5702254                            /usr/lib32/libgdk-x11-2.0.so.0.1600.1
+cfe8e000-cfe8f000 ---p 00089000 08:08 5702254                            /usr/lib32/libgdk-x11-2.0.so.0.1600.1
+cfe8f000-cfe91000 r-xp 00089000 08:08 5702254                            /usr/lib32/libgdk-x11-2.0.so.0.1600.1
+cfe91000-cfe92000 rwxp 0008b000 08:08 5702254                            /usr/lib32/libgdk-x11-2.0.so.0.1600.1
+cfe92000-cfe96000 r-xp 00000000 08:08 5702458                            /usr/lib32/libXtst.so.6.1.0
+cfe96000-cfe97000 r-xp 00004000 08:08 5702458                            /usr/lib32/libXtst.so.6.1.0
+cfe97000-cfe98000 rwxp 00005000 08:08 5702458                            /usr/lib32/libXtst.so.6.1.0
+cfe98000-d0241000 r-xp 00000000 08:08 5702252                            /usr/lib32/libgtk-x11-2.0.so.0.1600.1
+d0241000-d0245000 r-xp 003a8000 08:08 5702252                            /usr/lib32/libgtk-x11-2.0.so.0.1600.1
+d0245000-d0247000 rwxp 003ac000 08:08 5702252                            /usr/lib32/libgtk-x11-2.0.so.0.1600.1
+d0247000-d0249000 rwxp d0247000 00:00 0 
+d0249000-d024a000 r-xp 00000000 08:08 5710679                            /usr/lib/locale/en_US.utf8/LC_NAME
+d024a000-d024b000 r-xp 00000000 08:08 5710032                            /usr/lib/locale/en_US.utf8/LC_ADDRESS
+d024b000-d0258000 r-xp 00000000 08:08 5702624                            /usr/lib32/libgcc_s.so.1
+d0258000-d0259000 r-xp 0000c000 08:08 5702624                            /usr/lib32/libgcc_s.so.1
+d0259000-d025a000 rwxp 0000d000 08:08 5702624                            /usr/lib32/libgcc_s.so.1
+d025a000-d025c000 r-xp 00000000 08:08 3860103                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libplds4.so
+d025c000-d025d000 rwxp 00002000 08:08 3860103                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libplds4.so
+d025d000-d0261000 r-xp 00000000 08:08 3860102                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libplc4.so
+d0261000-d0262000 rwxp 00003000 08:08 3860102                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/mozilla-1.7.12/libplc4.so
+d0262000-d02ac000 r-xp 00000000 08:08 3859757                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-pi-gtk-3235.so
+d02ac000-d02ae000 rwxp 0004a000 08:08 3859757                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/libswt-pi-gtk-3235.so
+d02ae000-d033c000 r-xs 00a0d000 08:08 3859744                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/gwt-dev-linux.jar
+d033c000-d038d000 r-xs 00318000 08:08 3859747                            /opt/eclipse/plugins/com.google.gwt.eclipse.sdkbundle.linux_1.6.4.v200904062334/gwt-linux-1.6.4/gwt-user.jar
+d038d000-d038e000 ---p d038d000 00:00 0 
+d038e000-d040e000 rwxp d038e000 00:00 0 
+d040e000-d0411000 ---p d040e000 00:00 0 
+d0411000-d045f000 rwxp d0411000 00:00 0 
+d045f000-d0462000 ---p d045f000 00:00 0 
+d0462000-d04e0000 rwxp d0462000 00:00 0 
+d04e0000-d04e3000 ---p d04e0000 00:00 0 
+d04e3000-d0561000 rwxp d04e3000 00:00 0 
+d0561000-d0564000 ---p d0561000 00:00 0 
+d0564000-d05b2000 rwxp d0564000 00:00 0 
+d05b2000-d05f1000 r-xp 00000000 08:08 5709968                            /usr/lib/locale/en_US.utf8/LC_CTYPE
+d05f1000-d05f4000 ---p d05f1000 00:00 0 
+d05f4000-d0642000 rwxp d05f4000 00:00 0 
+d0642000-d0645000 ---p d0642000 00:00 0 
+d0645000-d0693000 rwxp d0645000 00:00 0 
+d0693000-d0694000 ---p d0693000 00:00 0 
+d0694000-d0747000 rwxp d0694000 00:00 0 
+d0747000-d08d9000 r-xs 02f34000 08:08 312439                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/rt.jar
+d08d9000-d08da000 ---p d08d9000 00:00 0 
+d08da000-d095a000 rwxp d08da000 00:00 0 
+d095a000-d095b000 ---p d095a000 00:00 0 
+d095b000-d09f6000 rwxp d095b000 00:00 0 
+d09f6000-d09fb000 rwxp d09f6000 00:00 0 
+d09fb000-d0a21000 rwxp d09fb000 00:00 0 
+d0a21000-d0adf000 rwxp d0a21000 00:00 0 
+d0adf000-d0afa000 rwxp d0adf000 00:00 0 
+d0afa000-d0aff000 rwxp d0afa000 00:00 0 
+d0aff000-d0b25000 rwxp d0aff000 00:00 0 
+d0b25000-d0be2000 rwxp d0b25000 00:00 0 
+d0be2000-d0bf7000 rwxp d0be2000 00:00 0 
+d0bf7000-d0bff000 rwxp d0bf7000 00:00 0 
+d0bff000-d40e0000 rwxp d0bff000 00:00 0 
+d40e0000-d4c00000 rwxp d40e0000 00:00 0 
+d4c00000-d9680000 rwxp d4c00000 00:00 0 
+d9680000-f1320000 rwxp d9680000 00:00 0 
+f1320000-f3bf0000 rwxp f1320000 00:00 0 
+f3bf0000-f4c00000 rwxp f3bf0000 00:00 0 
+f4c00000-f4c04000 r-xp 00000000 08:08 5702220                            /usr/lib32/libgthread-2.0.so.0.2000.1
+f4c04000-f4c05000 r-xp 00003000 08:08 5702220                            /usr/lib32/libgthread-2.0.so.0.2000.1
+f4c05000-f4c06000 rwxp 00004000 08:08 5702220                            /usr/lib32/libgthread-2.0.so.0.2000.1
+f4c06000-f4c25000 rwxp f4c06000 00:00 0 
+f4c25000-f4cc6000 rwxp f4c25000 00:00 0 
+f4cc6000-f5466000 rwxp f4cc6000 00:00 0 
+f5466000-f7cc6000 rwxp f5466000 00:00 0 
+f7cc6000-f7cd5000 r-xp 00000000 08:08 312374                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libzip.so
+f7cd5000-f7cd7000 rwxp 0000e000 08:08 312374                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libzip.so
+f7cd7000-f7cfa000 r-xp 00000000 08:08 312372                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libjava.so
+f7cfa000-f7cfc000 rwxp 00023000 08:08 312372                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libjava.so
+f7cfc000-f7d06000 r-xp 00000000 08:08 737444                             /lib32/libnss_files-2.9.so
+f7d06000-f7d07000 r-xp 00009000 08:08 737444                             /lib32/libnss_files-2.9.so
+f7d07000-f7d08000 rwxp 0000a000 08:08 737444                             /lib32/libnss_files-2.9.so
+f7d08000-f7d11000 r-xp 00000000 08:08 737446                             /lib32/libnss_nis-2.9.so
+f7d11000-f7d12000 r-xp 00008000 08:08 737446                             /lib32/libnss_nis-2.9.so
+f7d12000-f7d13000 rwxp 00009000 08:08 737446                             /lib32/libnss_nis-2.9.so
+f7d13000-f7d28000 r-xp 00000000 08:08 737441                             /lib32/libnsl-2.9.so
+f7d28000-f7d29000 r-xp 00014000 08:08 737441                             /lib32/libnsl-2.9.so
+f7d29000-f7d2a000 rwxp 00015000 08:08 737441                             /lib32/libnsl-2.9.so
+f7d2a000-f7d2c000 rwxp f7d2a000 00:00 0 
+f7d2c000-f7d2d000 r-xp 00000000 08:08 5710033                            /usr/lib/locale/en_US.utf8/LC_TELEPHONE
+f7d2d000-f7d2e000 r-xp 00000000 08:08 5710035                            /usr/lib/locale/en_US.utf8/LC_MEASUREMENT
+f7d2e000-f7d30000 r-xp 00000000 08:08 5702437                            /usr/lib32/libXinerama.so.1.0.0
+f7d30000-f7d31000 rwxp 00001000 08:08 5702437                            /usr/lib32/libXinerama.so.1.0.0
+f7d31000-f7d3c000 r-xp 00000000 08:08 312371                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libverify.so
+f7d3c000-f7d3d000 rwxp 0000b000 08:08 312371                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/libverify.so
+f7d3d000-f7d45000 rwxs 00000000 08:08 2410835                            /tmp/hsperfdata_mzepedas/5865
+f7d45000-f7d4c000 r-xp 00000000 08:08 737451                             /lib32/librt-2.9.so
+f7d4c000-f7d4d000 r-xp 00006000 08:08 737451                             /lib32/librt-2.9.so
+f7d4d000-f7d4e000 rwxp 00007000 08:08 737451                             /lib32/librt-2.9.so
+f7d4e000-f7d51000 ---p f7d4e000 00:00 0 
+f7d51000-f7d9f000 rwxp f7d51000 00:00 0 
+f7d9f000-f7dc3000 r-xp 00000000 08:08 737439                             /lib32/libm-2.9.so
+f7dc3000-f7dc4000 r-xp 00023000 08:08 737439                             /lib32/libm-2.9.so
+f7dc4000-f7dc5000 rwxp 00024000 08:08 737439                             /lib32/libm-2.9.so
+f7dc5000-f7dc6000 rwxp f7dc5000 00:00 0 
+f7dc6000-f7f22000 r-xp 00000000 08:08 737435                             /lib32/libc-2.9.so
+f7f22000-f7f23000 ---p 0015c000 08:08 737435                             /lib32/libc-2.9.so
+f7f23000-f7f25000 r-xp 0015c000 08:08 737435                             /lib32/libc-2.9.so
+f7f25000-f7f26000 rwxp 0015e000 08:08 737435                             /lib32/libc-2.9.so
+f7f26000-f7f29000 rwxp f7f26000 00:00 0 
+f7f29000-f7f2b000 r-xp 00000000 08:08 737438                             /lib32/libdl-2.9.so
+f7f2b000-f7f2c000 r-xp 00001000 08:08 737438                             /lib32/libdl-2.9.so
+f7f2c000-f7f2d000 rwxp 00002000 08:08 737438                             /lib32/libdl-2.9.so
+f7f2d000-f7f34000 r-xp 00000000 08:08 319680                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/jli/libjli.so
+f7f34000-f7f36000 rwxp 00006000 08:08 319680                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/jli/libjli.so
+f7f36000-f7f4b000 r-xp 00000000 08:08 737449                             /lib32/libpthread-2.9.so
+f7f4b000-f7f4c000 r-xp 00014000 08:08 737449                             /lib32/libpthread-2.9.so
+f7f4c000-f7f4d000 rwxp 00015000 08:08 737449                             /lib32/libpthread-2.9.so
+f7f4d000-f7f50000 rwxp f7f4d000 00:00 0 
+f7f50000-f7f51000 r-xp 00000000 08:08 5710036                            /usr/lib/locale/en_US.utf8/LC_IDENTIFICATION
+f7f51000-f7f54000 r-xs 000cb000 08:08 18481                              /usr/lib/jvm/java-6-sun-1.6.0.13/jre/lib/ext/localedata.jar
+f7f54000-f7f57000 r-xs 00027000 08:08 18479                              /usr/lib/jvm/java-6-sun-1.6.0.13/jre/lib/ext/sunjce_provider.jar
+f7f57000-f7f5e000 r-xp 00000000 08:08 737442                             /lib32/libnss_compat-2.9.so
+f7f5e000-f7f5f000 r-xp 00006000 08:08 737442                             /lib32/libnss_compat-2.9.so
+f7f5f000-f7f60000 rwxp 00007000 08:08 737442                             /lib32/libnss_compat-2.9.so
+f7f60000-f7f66000 r-xp 00000000 08:08 312359                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/native_threads/libhpi.so
+f7f66000-f7f67000 rwxp 00006000 08:08 312359                             /usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/native_threads/libhpi.so
+f7f67000-f7f68000 rwxp f7f67000 00:00 0 
+f7f68000-f7f69000 r-xp f7f68000 00:00 0 
+f7f69000-f7f6b000 rwxp f7f69000 00:00 0 
+f7f6b000-f7f6c000 r-xp f7f6b000 00:00 0                                  [vdso]
+f7f6c000-f7f8b000 r-xp 00000000 08:08 737388                             /lib32/ld-2.9.so
+f7f8b000-f7f8c000 r-xp 0001e000 08:08 737388                             /lib32/ld-2.9.so
+f7f8c000-f7f8d000 rwxp 0001f000 08:08 737388                             /lib32/ld-2.9.so
+ffe77000-ffe8c000 rwxp 7ffffffea000 00:00 0                              [stack]
+
+VM Arguments:
+jvm_args: -Xmx512m -Dfile.encoding=UTF-8 
+java_command: com.google.gwt.dev.HostedMode -startupUrl /buy -war /home/mzepedas/workspace/eclipse/Client/war -logLevel INFO -style OBFUSCATED -port 8080 -noserver com.tatamee.client.Client
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+USERNAME=mzepedas
+LD_LIBRARY_PATH=/usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386/server:/usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/lib/i386:/usr/lib/jvm/ia32-java-6-sun-1.6.0.13/jre/../lib/i386:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64/server:/usr/lib/jvm/java-6-openjdk/jre/lib/amd64:/usr/lib/jvm/java-6-openjdk/jre/../lib/amd64:/usr/lib64/xulrunner-addons
+SHELL=/bin/bash
+DISPLAY=:0.0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x6071f0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x6071f0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x5048b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: SIG_IGN, sa_mask[0]=0x00001000, sa_flags=0x10000000
+SIGXFSZ: [libjvm.so+0x5048b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x5048b0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x506d80], sa_mask[0]=0x00000004, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x506b20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x506b20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x506b20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x506b20], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:5.0
+
+uname:Linux 2.6.28-13-generic #45-Ubuntu SMP Tue Jun 30 22:12:12 UTC 2009 x86_64
+libc:glibc 2.9 NPTL 2.9 
+rlimit: STACK 8192k, CORE 0k, NPROC infinity, NOFILE 1024, AS infinity
+load average:1.08 0.76 0.66
+
+CPU:total 2 (2 cores per cpu, 1 threads per core) family 6 model 15 stepping 13, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3
+
+Memory: 4k page, physical 2025612k(26540k free), swap 3927852k(3902316k free)
+
+vm_info: Java HotSpot(TM) Server VM (11.3-b02) for linux-x86 JRE (1.6.0_13-b03), built on Mar  9 2009 01:16:42 by "java_re" with gcc 3.2.1-7a (J2SE release)
+
+time: Mon Jul 13 14:14:27 2009
+elapsed time: 4226 seconds
+

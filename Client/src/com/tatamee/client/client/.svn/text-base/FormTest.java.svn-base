@@ -1,0 +1,68 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FormHandler;
+import com.google.gwt.user.client.ui.FormPanel;
+import com.google.gwt.user.client.ui.FormSubmitCompleteEvent;
+import com.google.gwt.user.client.ui.FormSubmitEvent;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.PasswordTextBox;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+public class FormTest extends Composite {
+
+	// Create a FormPanel and point it at a service.
+	public FormTest() {
+		final FormPanel form = new FormPanel();
+		form.setEncoding(FormPanel.ENCODING_MULTIPART);
+		form.setMethod(FormPanel.METHOD_POST);
+		
+		VerticalPanel holder = new VerticalPanel();
+
+		holder.add(new Label("User ID"));
+		TextBox userid = new TextBox();
+		userid.setName("userid");
+		holder.add(userid);
+
+		holder.add(new Label("Password"));
+		PasswordTextBox passwd = new PasswordTextBox();
+		passwd.setName("passwd");
+		holder.add(passwd);
+
+		holder.add(new Button("Submit", new ClickListener()
+		{
+		    public void onClick(Widget sender)
+		    {
+		         form.submit();
+		    }
+		}));
+
+		form.add(holder);
+
+		 form.setAction("/post");
+
+		form.addFormHandler(new FormHandler()
+		{
+		    public void onSubmit(FormSubmitEvent event)
+		    {
+		    	Window.alert("Submitting...");
+		    }
+
+		    public void onSubmitComplete(FormSubmitCompleteEvent event){
+		        Window.alert(event.getResults());
+		    }
+		});
+
+//		RootPanel.get().add(form);
+		initWidget(form);
+	}
+}

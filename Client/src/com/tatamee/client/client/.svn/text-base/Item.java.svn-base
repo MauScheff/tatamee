@@ -1,0 +1,121 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+import java.util.ArrayList;
+
+public class Item{
+	public class Attribute {
+		private String attribute;
+		private String value;
+		public Attribute(String _attribute_, String _value_){
+			attribute = _attribute_;
+			value = _value_;
+		}
+		
+		public String toString(){
+			if(value.equalsIgnoreCase("yes") || value.equalsIgnoreCase("true"))
+				return attribute;
+			return attribute + ": " + value;
+		}
+	}
+	
+	private String[] name = null;
+	private String[] picture = null;
+	private double price;
+	private String description;
+	private ArrayList<Attribute> attributes = new ArrayList<Attribute>();
+	private int addedDaysAgo;
+	private String owner;
+	boolean anonymous=false;
+//	Date added
+//	glatlong
+//	owner
+	
+	public Item(String[] _name_, String _description_, String[] _picture_, double _price_, int _addedDaysAgo_, String _owner_){
+		name = _name_;
+		picture = _picture_;
+		description = _description_;
+		price = _price_;
+		addedDaysAgo = _addedDaysAgo_;
+		owner = _owner_;
+	}
+	
+	public void setAnonymous(boolean _anonymous_){
+		anonymous = _anonymous_;
+	}
+	
+	public void addAttribute(String _attribute_, String _value_){
+		attributes.add(new Attribute(_attribute_, _value_));
+	}
+	
+	public String getName(int index){
+		if (name[index] == null)
+			return "";
+		return name[index];
+	}
+	
+	public String getPicture(int index){
+		if (picture[index] == null)
+			return "";
+		return picture[index];
+	}
+	
+	public String getDescription(){
+		return description;
+	}
+	
+	public String getAttributes(int bottom){
+		String result = "";
+		if(attributes.size()<bottom) return result;
+		for(int j=bottom;j<attributes.size();j++){
+				Attribute attr = (Attribute) attributes.get(j);
+				result +=  attr.toString() + "<br/>";
+		}
+		return result;
+	}
+	
+	public String getAttributes(int bottom, int top){
+		String result = "";
+		if(attributes.size()<bottom) return result;
+		if(attributes.size()<top) top = attributes.size();
+		for(int j=bottom;j<top;j++){
+				Attribute attr = (Attribute) attributes.get(j);
+				result +=  attr.toString() + "<br/>";
+		}
+		return result;
+	}
+	
+	public double getPrice(){
+		return price;
+	}
+	
+	public String getDaysSinceAdded(){
+		return Integer.toString(addedDaysAgo);
+		
+	}
+	
+//	Not very anonymous, user could be found inspecting request??
+	public String getOwner(){
+		if(anonymous) return "anonymous";
+		return owner;
+	}
+	
+	/*
+	 * TODO Should be get from server from user
+	 */
+	public String getGoodRatings(){
+//		owner
+		return Double.toString(Math.random()*10).substring(0, 1);
+	}
+	
+	/*
+	 * TODO Should be get from server from user
+	 */
+	public String getBadRatings(){
+//		owner
+		return Double.toString(Math.random()*10).substring(0, 1);
+	}
+	
+}

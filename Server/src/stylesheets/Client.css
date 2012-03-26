@@ -1,0 +1,529 @@
+/*-----------
+ Application
+------------*/
+
+body {
+  font-family: Verdana, Sans-serif;
+  background-color: #ffffff;
+}
+
+body a {
+  color: #1799dd;
+}
+
+div,td {
+  color: #000000;
+}
+
+input {
+  color: #333333;
+}
+
+.MapPanel {
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 12px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+}
+
+.title {
+  color: #2473aa;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1.36em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-left: 3px;
+}
+
+.title2 {
+  color: #2473aa;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1.3em;
+  margin-bottom: 3px;
+}
+
+.title2-icon-right {
+  color: #2473aa;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1.3em;
+  margin-right: 3px;
+}
+
+.title2-icon-left {
+  color: #2473aa;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1.3em;
+  margin-left: 3px;
+}
+
+.title3 {
+  color: #2473aa;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1em;
+}
+
+.TopPanel img {
+  margin-top: 5px;
+}
+
+.TopPanel-links {
+  font-size:13px;
+}
+
+.TopPanel a {
+  font-family: Verdana, Sans-serif;
+  font-size:14px;
+  color: #1799dd;
+}
+
+.TopPanel {
+  margin-top: 10px;
+  margin-right: 30px;
+}
+
+.TopPanel-greeting {
+  font-size: 14px;
+  color: #656669; 
+}
+
+.topPanelOuter {
+  padding: 12px;
+  background-color: #e2e2e2;
+  width: 100%;
+}
+
+.topPanelOuterR {
+  width: 900px;
+  margin-bottom: 10px;
+}
+
+.TabPanel {
+  width: 845px;
+}
+
+.inactiveTab {
+  height: 30px;
+  cursor: pointer;
+  background-color: #acacac;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: white;
+}
+
+.inactiveTab-hover {
+  background-color: #eaeaea;
+}
+
+.inactiveRTab {
+  margin-right: 10px;
+}
+
+.activeTab {
+  height: 30px;
+  cursor: pointer;
+  background-color: #e2e2e2;
+}
+
+.activeTab-hover {
+  background-color: #e2e2e2;
+}
+
+.activeRTab {
+  margin-right: 10px;
+}
+
+.tabLabel {
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #555555;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+}
+
+.tabLabel a {
+  color: #555555;
+  text-decoration: none;
+}
+
+/*Arrow*/
+.searchPanelOuter {
+  /*background-image: url("/images/arrow.png");*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: 19px 208px;*/
+}
+
+.SearchPanel {
+  width: 100%;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.SearchPanel input {
+  margin-bottom: 5px;
+}
+
+.ItemPanel {
+  background-color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.ItemPanel a {
+  font-family: Verdana, Sans-serif;
+  font-size: 11px;
+}
+
+.ItemPanel-title {
+  font-family: Helvetica, Sans-serif;
+  color: #1b1b1b;
+  font-weight: bold;
+}
+
+.ItemPanel-price {
+  font-size: 1.15em;
+  margin-right: 15px;
+}
+
+.ItemPanel-goodratings{
+  width: 40px;
+  color: #31CC00;
+  cursor: help;
+}
+
+.ItemPanel-badratings{
+  width: 40px;
+  color: #CC1B00;
+  cursor: help;
+}
+
+.ItemPanel-daysAgo {
+  color: #AFAFAF;
+  margin-right: 15px;
+}
+
+.ItemPanel-description {
+  margin-left: 10px;
+  padding: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+  width: 160px;
+  height: 90px;
+  overflow: auto;
+  color: #1b1b1b;
+}
+
+.ItemPanel-tags {
+  padding: 5px;
+  font-size: 12px;
+  width: 157px;
+  height: 90px;
+  margin-left: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+  overflow: auto;
+  color: #1b1b1b;
+}
+
+.ItemPanel-linksPanel {
+  font-size:12px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+  padding: 5px;
+}
+
+.ItemPanel-features {
+  width: 135px;
+  height: 90px;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.ListPanel {
+  background-color: white;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 12px;
+}
+
+.ListPanel-link {
+  font-family: Verdana, Sans-serif;
+  font-size: 12px;
+  color: red;
+}
+
+.ListPanel-bullet {
+  margin-right: 3px;
+}
+
+.ListPanel a {
+  font-family: Helvetica, Sans-serif;
+  color: #1799dd;
+}
+
+.MyItems a {
+  margin-bottom: 3px;
+  font-family: Verdana, Sans-serif;
+  font-size: 14px;
+}
+
+.MyItems img {
+  cursor: pointer;
+}
+
+.gwt-Label {
+  font-size: 13px;
+}
+
+.border {
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+}
+
+.BottomPanel {
+  margin-bottom: 40px;
+}
+
+.BottomPanel a {
+  font-family: Helvetica, Sans-serif;
+  font-size: 13px;
+  color: #1799dd;
+}
+
+.BottomPanelItem {
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #656669;
+}
+
+.BottomPanelIcon {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/*NOT NEEDED?*/
+.gwt-GlassPanel {
+    /* Override glass panel color to be */
+    background-color: black !important;
+    
+    /* Override glass panel to 10% opacity (= 90% transparency) */
+    filter: alpha(opacity = 60) !important; /* IE */
+    opacity: 0.6 !important; /* non-IE */
+    z-index: 10;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.popup-location {
+	font-size: 15px;
+	color: #0066CC;
+}
+
+.SellPanel {
+	background-color: white;
+	width: 100%;
+	height: 100%;
+}
+
+.SellRPanel {
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.SellPanel-ItemTitles {
+  margin-left: 10px;
+}
+
+.SellPanel-Currency {
+  font-size: 1.5em;
+}
+
+.SellPanel-StatusLabel {
+  color: grey;
+  size: 0.8em;
+}
+
+.SellPanel-topIcon {
+  margin-left: 10px;
+  padding-top: 10px;
+}
+
+.SellPanel-panel2 {
+  padding-right: 15px;
+}
+
+.PopUpPanel {
+   z-index: 11;
+}
+
+.PopUpPanel-content {
+   background-color: white;
+}
+
+.gwt-Button { 
+	margin-left: 10px;
+}
+
+.cbg-Button { 
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 100%;
+  /*relative to inherit 16px font-size*/
+}
+
+.SettingsPanel-link {
+  margin-bottom: 3px;
+  cursor: pointer;
+  font-family: Verdana, Sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  text-decoration: underline;
+  color: #1799dd;
+}
+
+.FeaturesPanel img {
+  cursor: pointer;
+}
+
+.PicturesPanel img {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #808080;
+}
+
+.PicturesPanel-thumbnail {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.PicturesPanel-selected {
+  border-color: red;
+}
+
+.PicturesPanel-description {
+  color: #333333;
+  width: 500px;
+  margin-top: 10px;
+}
+
+.AddPicturesPanel img {
+  margin-right: 5px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #808080;
+  cursor: pointer;
+}
+
+.AddPicturesPanel-uploader {
+  height: 120px;
+  width: 365px;
+  float: left;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #333333;
+}
+
+.AddPicturesPanel-unsaved {
+  color: grey;
+}
+
+.MessagesPanel {
+  padding: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+}
+
+
+.gwt-SuggestBoxPopup {
+  z-index: 12;
+}
+
+.italics {
+  font-style: italic;
+}
+
+/* Button Style */ /* specific for Opera */ .cbg-ButtonContent::selection { background-color:transparent; } .cbg-Button { font-family: Arial, Helvetica, sans-serif; font-size: 100%; /*relative to inherit 16px font-size*/ } .cbg-Button .cbg-ButtonOuter { border-color: #4187ba; } .cbg-Button .cbg-ButtonInner { background-color: #4999d3; border-color: #4187ba; } .cbg-Button .cbg-ButtonTop { background-color: #56b4f7; border-bottom-color: #50a6e5; border-bottom-width: 0.2em; height: 0.9em; } .cbg-Button .cbg-ButtonContent { color: white; line-height: 1.8em; padding: 0 8px; } .cbg-Button-active .cbg-ButtonInner { background-color: #56b4f7; } .cbg-Button-active .cbg-ButtonTop { background-color: #4999d3; } .cbg-Button-disabled .cbg-ButtonContent { color: #a2cfef; } .cbg-Button-hover .cbg-ButtonOuter { border-color: #326991; } .cbg-Button-hover .cbg-ButtonInner { border-color: #326991; } .cbg-Button-focus .cbg-ButtonOuter { border-color: #173042; } .cbg-Button-focus .cbg-ButtonInner { border-color: #173042; } /* ButtonBar specific style */ .cbg-ButtonBar .cbg-BCLeft .cbg-ButtonInner { border-left-color: white; } .cbg-ButtonBar .cbg-Button-hover .cbg-ButtonInner { border-color: #326991; } .cbg-ButtonBar .cbg-Button-focus .cbg-ButtonInner { border-color: #173042; } .cbg-ButtonBar .cbg-BCRight .cbg-ButtonInner { border-right-color: #4187ba; }
+
+/*RATINGS PROJECT*/
+
+.logo {
+	background-image:url("/images/logo.png");
+}
+
+.big {
+  font-size: 1.6em;
+}
+
+.greybackground {
+  background-color: #e2e2e2;
+}
+
+.usermap {
+  border-width: 1px;
+  border-style: solid;
+  border-color: grey;
+  margin-right: 10px;
+}
+
+.createedit {
+  color: #2473aa;
+  font-family: Helvetica, Sans-serif;
+  font-size: 1.36em;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.commaSeparated {
+  color: grey;
+}
+
+.listBox {
+  margin-bottom: 5px;
+}
+
+.slogan {
+  position: relative;
+  left: 63px;
+  color: #656669;
+  font-family: Helvetica, sans-serif;
+  font-size: 1.5em;
+}
+
+.thumbnail {
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #808080;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+.frame-noborder {
+  border-width: 0px;
+  position: relative;
+  left:-10px;
+  overflow: hidden;
+}
+
+.link {
+  cursor: pointer;
+  position: relative;
+  top: 3px;
+}

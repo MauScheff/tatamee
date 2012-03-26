@@ -1,0 +1,255 @@
+/** Add css rules here for your application. */
+body {
+  font-family:arial,sans-serif;
+  background-color: #fbfbfb;
+}
+
+div,td {
+  color:#000000
+}
+
+a {
+  text-decoration: none;
+  color:#0000cc
+}
+
+button {
+  display: block;
+  font-size: 12pt;
+}
+
+.TopPanel {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.TopPanel img {
+  margin-top: 5px;
+}
+
+.TopPanel-links {
+  cursor: pointer;
+  font-size:13px;
+  color: #0000cc;
+}
+
+.TopPanel a {
+  font-size:13px;
+  color: #0000cc;
+}
+
+.TopPanel-greeting {
+  font-size:14px;
+}
+
+.arrow {
+  position: relative;
+  top: 130px;
+  horizontal-align: center;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 210px;
+  height: 205px;
+}
+
+.borderPanel {
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  background-color: white;
+}
+
+.SearchPanel {
+  background-color: white;
+  width: 210px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  padding-bottom: 12px;
+  border: 1px solid grey;
+  position: absolute;
+  z-index: 1;
+}
+
+.ItemPanel {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 2px;
+  border: 1px solid grey;
+}
+
+.ItemPanel img {
+  border: 1px solid black;
+}
+
+.ItemPanel a {
+  position: absolute;
+  z-index: 2;
+}
+
+.ItemPanel-titlebar {
+  margin-left: 12px;
+  margin-right: 12px;
+  font-weight: bold;
+}
+
+.ItemPanel-title {
+  width: 255px;
+}
+
+.ItemPanel-price {
+  width: 190px;
+  color: #0066CC;
+}
+
+.ItemPanel-goodratings{
+  width: 40px;
+  color: #31CC00;
+  cursor: help;
+}
+
+.ItemPanel-badratings{
+  width: 40px;
+  color: #CC1B00;
+  cursor: help;
+}
+
+.ItemPanel-daysAgo {
+  color: #AFAFAF;
+}
+
+.ItemPanel-description {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid grey;
+  width: 122px;
+  height:90px;
+  overflow: auto;
+}
+
+.ItemPanel-features {
+  width: 135px;
+  height: 90px;
+  margin: 5px;
+  overflow: hidden;
+}
+
+.ItemPanel-featuresPanel {
+  font-size:12px;
+  width: 135px;
+  height: 90px;
+  margin-left: 10px;
+  border: 1px solid grey;
+}
+
+.ItemPanel-glass {
+    width: 145px;
+    height: 100px;
+    background-color: white;
+    filter: alpha(opacity = 00) !important; /* IE */
+    opacity: 0.0 !important; /* non-IE */
+    position: absolute;
+    z-index: 1;
+}
+
+.ListPanel {
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 5%;
+  border: 1px solid grey;
+}
+
+.ListPanel-results {
+  cursor: pointer;
+}
+
+.gwt-Label {
+  font-size: 13px;
+}
+
+.border {
+  border: 1px solid grey;
+}
+
+.BottomPanel {
+  width: 100%;
+  height: 20px;
+  border-bottom: 1px solid grey;
+}
+
+.BottomPanel-copyright{
+  color: #c2c2c2;
+}
+
+.gwt-GlassPanel {
+    /* Override glass panel color to be */
+    background-color: grey !important;
+    
+    /* Override glass panel to 10% opacity (= 90% transparency) */
+    filter: alpha(opacity = 60) !important; /* IE */
+    opacity: 0.6 !important; /* non-IE */
+    z-index: 10;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.popup-location {
+	font-size: 15px;
+	color: #0066CC;
+}
+
+.SellPanel {
+    border: 1px solid grey;
+    margin-left: 10px;
+    /*margin-right: 5px;*/
+    width: 582px;
+    height: 362px;
+}
+
+.SellPanel-textAreaLabel{
+  cursor: pointer;
+}
+
+.SellPanel img {
+  border: 1px solid black;
+}
+
+.SellPanel-ItemTitles {
+  margin-left: 10px;
+}
+
+.SellPanel-Currency {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.SellPanel-StatusPanel {
+  border: 1px solid grey;
+  vertical-align: middle;
+  horizontal-align: center;
+  text-color: white;
+  background-color: #F1F1F1;
+}
+
+.SellPanel-StatusLabel {
+  color: grey;
+  size: 0.8em;
+}
+
+.dialogue {
+   z-index: 11;
+}
+
+.gwt-RichTextArea { 
+  width: 270px;
+  height: 200px;
+  padding: 0px; /*not workkng*/
+}
+
+

@@ -1,0 +1,63 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+public class SearchPanel extends Composite{
+	private static VerticalPanel mainPanel = new VerticalPanel();
+	private static VerticalPanel outerPanel = new VerticalPanel();
+	private static TextBox location = new TextBox();
+	
+	public SearchPanel(String root, String currentLocation) {
+		mainPanel.setStyleName("SearchPanel");
+		mainPanel.add(new Label("Change Location:"));
+		mainPanel.add(location);
+		Button button = new Button("OK");
+		button.addClickListener(new ClickListener() {
+			public void onClick(Widget sender) {
+				MapPanel.setLocation(location.getText());
+				ListPanel.setLabel("Search results in " + location.getText());
+			}
+		});
+		mainPanel.add(button);
+		final VerticalPanel filters = new VerticalPanel();
+		mainPanel.add(new HTML("<br/>"));
+		mainPanel.add(filters);
+		mainPanel.add(new Label("Search:"));// SET CURSOR TO HELP, oN CLICK POPUP WITH VIDEO ON HOW TO SEARCH
+		final TextBox searchBox = new TextBox();
+		searchBox.setText("Cellphone");
+		mainPanel.add(searchBox);
+		Button dummy = new Button("Add");
+		dummy.addClickListener(new ClickListener() {
+			public void onClick(Widget sender) {
+				if(!searchBox.getText().equals("")){
+				filters.add(new Label(searchBox.getText()));
+				searchBox.setText("");
+				}
+			}
+		});
+		mainPanel.add(dummy);
+
+		
+		Image arrow = new Image(root + "images/arrow.jpg");
+		arrow.setStyleName("arrow");
+		outerPanel.add(mainPanel);
+		outerPanel.add(arrow);
+		initWidget(outerPanel);
+	}
+	
+	public static void setLocationTextBox(String currentLocation){
+		location.setText(currentLocation);
+	}
+}

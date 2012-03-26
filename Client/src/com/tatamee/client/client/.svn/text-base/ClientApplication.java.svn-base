@@ -1,0 +1,175 @@
+/*
+ *	Copyright 2008 Tatamee
+ */
+
+package com.tatamee.client;
+
+import com.google.gwt.core.client.EntryPoint;
+
+import com.google.gwt.user.client.ui.ClickListener;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.RootPanel;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+
+/*
+ * TODO: Working on FindHomePopup, send marker location to server
+ */
+
+/*
+ * TODO: Internationalize TODO: Add different sizes for different resolutions
+ * TODO: Change the way in which user reports and succeses look TODO: When click
+ * on username in item panel load that users items and location TODO: Change all
+ * links for hyperlink objects (for history frame suppor) TODO: Change HTMLs for
+ * Labels (Security) TODO: Download Datensi - Epic Woman (Dusky Mix) (Alladino)
+ */
+
+/**
+ * Entry point classes define <code>onModuleLoad()</code>.
+ */
+public class ClientApplication implements EntryPoint {
+
+	private HorizontalPanel searchPanelOuter = null;
+
+	private SellPanel sellPanel = null;
+
+	// private FormTest sellPanel = null;
+
+	private SearchPanel searchPanel = null;
+
+	private MapPanel mapPanel = null;
+
+	public static String user;
+
+	/**
+	 * This is the entry point method.
+	 */
+	public void onModuleLoad() {
+
+		/*
+		 * Load Variables from App Engine
+		 */
+		final String city = loadVariable("city");
+		final String country = loadVariable("country");
+		String localOrHost = loadVariable("root");
+		final String user = loadVariable("user");
+		// final String user = "anonymous"; // FOR TESTING
+		final String links = loadVariable("links");
+		final String mode = loadVariable("mode");
+		// final String mode = "sell";
+		if (localOrHost.equals("{{ root }}"))
+			localOrHost = ""; // for local testing without app engine
+		final String root = localOrHost; // CHANGE ALL APP TO USE STATIC
+		// FIELD IN CLIENT APPLICATION
+		ClientApplication.user = user;
+
+		/*
+		 * Sell/Buy Mode Listener
+		 */
+		ClickListener modeListener = new ClickListener() {
+			public void onClick(Widget sender) {
+				if (sender.toString().indexOf("Sell") > 0)
+					setSellInterface(user, root);
+				else
+					setBuyInterface(user, city + country);
+			}
+		};
+
+		/*
+		 * Outer Layout
+		 */
+		VerticalPanel mainPanelOuter = new VerticalPanel();
+		mainPanelOuter.setWidth("100%");
+		mainPanelOuter.setHorizontalAlignment(HorizontalPanel.ALIGN_CENTER);
+		searchPanelOuter = new HorizontalPanel();
+		VerticalPanel topPanelOuter = new VerticalPanel();
+		HorizontalPanel listPanelOuter = new HorizontalPanel();
+		VerticalPanel itemPanelOuter = new VerticalPanel();
+		VerticalPanel borderPanel = new VerticalPanel();
+		borderPanel.setStyleName("borderPanel");
+
+		/*
+		 * Inner Layout
+		 */
+		TopPanel topPanel = new TopPanel(root, user, links, modeListener);
+		ListPanel listPanel = new ListPanel(city + ", " + country);
+		ItemPanel itemPanel = new ItemPanel(root);
+		searchPanel = new SearchPanel(root, city + ", " + country);
+		mapPanel = new MapPanel(city + ", " + country);
+		mapPanel.setStyleName("border");
+		BottomPanel bottomPanel = new BottomPanel();
+
+		sellPanel = new SellPanel(root);
+		// sellPanel = new FormTest(); //TESTING
+		new PopUpPanel(); // To Initialize and set defaults
+
+		/*
+		 * Layout Assembly
+		 */
+		searchPanelOuter.add(searchPanel);
+		searchPanelOuter.add(mapPanel);
+		setBuyInterface(user, city + country);
+		itemPanelOuter.add(searchPanelOuter);
+		itemPanelOuter.add(itemPanel);
+		listPanelOuter.add(itemPanelOuter);
+		listPanelOuter.add(listPanel);
+		topPanelOuter.add(listPanelOuter);
+		borderPanel.add(topPanel);
+		borderPanel.add(topPanelOuter);
+		borderPanel.add(bottomPanel);
+		mainPanelOuter.add(borderPanel);
+		RootPanel.get().add(mainPanelOuter);
+
+		/*
+		 * Panel Sizes
+		 */
+		topPanel.setSize("770px", "60px");
+		listPanel.setSize("150px", "524px");
+		itemPanel.setSize("580px", "152px");
+		searchPanel.setSize("210px", "360px");
+		mapPanel.setSize("360px", "360px");
+
+		/*
+		 * MODE
+		 */
+		if (user.equals("anonymous"))
+			MapPanel.askLocation(user); // TODO: GEO IP DATABASE in FUTURE
+		// (MAXMIND.com)
+		/*
+		 * Lookup User, if first time prompt settings
+		 */
+		else {
+			FindHomePopup findHome = new FindHomePopup();
+			PopUpPanel.set("Hello " + user, findHome);
+			PopUpPanel.show();
+		}
+
+		if (mode.equals("sell"))
+			setSellInterface(user, root);
+	}
+
+	private void setSellInterface(String user, String root) {
+		searchPanelOuter.clear();
+		searchPanelOuter.addStyleName("SellPanel");
+		ListPanel.setLabel("My Items");
+		TopPanel.setSell(false, user);
+		searchPanelOuter.add(sellPanel);
+		ItemPanel.clearPanel();
+		ListPanel.setSell();
+	}
+
+	private void setBuyInterface(String user, String location) {
+		searchPanelOuter.removeStyleName("SellPanel");
+		searchPanelOuter.clear();
+		ListPanel.setLabel("Search Results");
+		TopPanel.setSell(true, user);
+		searchPanelOuter.add(searchPanel);
+		searchPanelOuter.add(mapPanel);
+		ListPanel.setBuy(location);
+		// LOAD FIRST ITEM ON LIST
+	}
+
+	private native String loadVariable(String name)/*-{
+	 return $wnd[name];
+	 }-*/;
+}

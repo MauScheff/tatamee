@@ -1,0 +1,25 @@
+<module>
+      <inherits name='com.google.gwt.user.User'/>
+      <inherits name='com.google.gwt.json.JSON'/>
+      <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+      <!--<inherits name="com.google.gwt.user.theme.chrome.Chrome"/>-->
+      <!--<inherits name="com.google.gwt.user.theme.dark.Dark"/>-->
+      <!-- Rounder Corners-->
+      <inherits name='org.cobogw.gwt.user.User' />
+      <!-- Inherit GlassPanel module                       -->
+      <inherits name="com.google.gwt.widgetideas.GlassPanel"/>
+      <!-- GWTGoogleMaps API Official -->
+      <inherits name='com.google.gwt.maps.GoogleMaps' />
+
+      <!-- MAPS API KEY -->
+      <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAf6ZlGjQ4-Q3GRlW2xkuJKRSfSgbJTj69hENLBg-AzTXfeK-ONBRFcl6-OHjEDhJ6RzmySQ5AbBC36Q" />
+
+      <!-- Locales -->
+      <extend-property name="locale" values="es"/>
+      <extend-property name="locale" values="en"/>
+
+      <entry-point class='com.tatamee.client.client.ClientApplication'/>
+      <stylesheet src='/stylesheets/Client.css' />	
+</module>
+
+

@@ -1,0 +1,8 @@
+cron:
+- description: delete items older than 30 days from now
+  url: /delete/delete_expired_items
+  schedule: every 2 hours
+  
+- description: delete ghost ratings older than 30 days from now
+  url: /delete/delete_expired_ghostratings
+  schedule: every 2 hours  
